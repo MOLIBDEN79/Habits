@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habits all</title>
+    <link rel="stylesheet" href="/css/habits.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="block">
+            <div class="content">
+                <img src="/img/img_4.png" class="face">
+                <a class="done-button" href="/add">Добавить категорию</a>
+            </div>
+        </div>
+        <!-- Цикл для создания контейнера для каждой привычки -->
+        <div th:each="habit : ${habits}" class="block">
+            <div class="content">
+
+                <h1><span th:text="${habit.name}"></span></h1>
+                <img src="/img/img_4.png" class="face">
+
+                <div class="habit-block">
+                    <p> Что хочешь <span th:text="${habit.outcome}"></span></p>
+                    <p> Как <span th:text="${habit.routine}"></span></p>
+                    <p>Категория <span th:text="${habit.category.name}"></span></p>
+                    <p>
+                        <a class="done-button" th:href="@{'/habits/edit/' + ${habit.id}}">Изменить</a>
+                        <a class="done-button" th:href="@{'/habits/delete/' + ${habit.id}}">Удалить</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    <!-- Блок для добавления новой привычки -->
+    <div class="block">
+        <div class="content">
+            <img src="/img/img_4.png" class="face">
+            <a class="done-button" href="/habits/add">Добавить привычку</a>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+/* Стилизация таблицы */
+* {
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+body {
+    height: 90vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #292929;
+    background-image: url('../img/fon.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+:root { /* Design */
+    --first-color-light: hsl(93, 58%, 66%);
+    --gradient-card: linear-gradient(180deg,
+    hsl(93deg 8% 8% / 0%),
+    hsla(93, 40%, 30%)
+    ); /* Градиент */
+}
+
+/* окошко логина */
+.form-container {
+    position: relative;
+    background: var(--gradient-card); /* градиент из рута */
+    padding: 5.75rem .75rem 1.25rem .75rem;
+    border: 2px solid var(--first-color-light);
+    border-radius: 1rem;
+    width: 500px;
+    height: 450px;
+    backdrop-filter: blur(5px);
+    box-shadow: var(--shadow-img);
+}
+
+
+input {
+    width: 350px;
+    height: 40px;
+    border: 1px solid #588157;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    background-color: #a3b18a;
+    outline: none;
+}
+
+
+/* Стилизация кнопки "Удалить" */
+button,
+.btn{
+    background-color: #3a5a40;
+    color: #F9FAFA;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    width: 350px;
+}
+
+button:hover,
+.btn:hover{
+    background-color: #344e41;
+    color: #F9FAFA;
+}
+
+h1 {
+    background-color: transparent;
+    color: #344e41;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.register {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}

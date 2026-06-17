@@ -1,0 +1,191 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: hsl(228, 6%, 8%); /* Dark grey background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white; /* Set text color to white */
+}
+
+/* Feedback form styles */
+.feedback-container {
+    z-index: 2; /* Ensure it's above the animation */
+    background: rgba(59, 57, 57, 0.4); /* Semi-transparent black background */
+    padding: 50px; /* Reduced padding */
+    border-radius: 15px; /* Slightly larger border radius */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    font-size: 1em; /* Reduced font size */
+    width: 80%; /* Set a max-width to prevent overflow */
+    max-width: 700px; /* Set a max-width to prevent overflow */
+
+}
+
+textarea {
+    width: 100%; /* Full width */
+    margin-bottom: 20px; /* Reduced margin below */
+    padding: 150px; /* Reduced padding */
+    border-radius: 5px; /* Round corners */
+    background: rgba(77, 76, 76, 0.1); /* Slightly transparent white background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    font-size: 1.0em; /* Reduced font size */
+}
+
+button {
+    padding: 10px 30px; /* Reduced padding */
+    border-radius: 5px; /* Round corners */
+    border: none; /* Remove border */
+    background: #00ff0082; /* Green background */
+    color: white; /* White text */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background 0.4s ease; /* Smooth transition for background */
+    font-size: 0.9em; /* Reduced font size */
+}
+
+button:hover {
+    background: #00cc00; /* Darker green on hover */
+}
+
+/* Animation styles */
+.animation-container {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.bubbles {
+    position: absolute;
+    display: flex;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bubbles span {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: #00ff00; /* Green color */
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff0044, 0 0 50px #00ff00, 0 0 100px #00ff00; /* Green color with different levels of transparency */
+    animation: animate 15s linear infinite;
+    animation-duration: calc(125s / var(--i));
+}
+
+.bubbles span:nth-child(even) {
+    background: #c1d71a; /* Light green color */
+    box-shadow: 0 0 10px #f0ff806f, 0 0 50px #c1d71a, 0 0 100px #c1d71a; /* Light green color with different levels of transparency */
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(100vh) scale(0);
+    }
+    100% {
+        transform: translateY(-10vh) scale(1);
+    }
+}
+
+
+.popup {
+    position: fixed;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    border: 1px solid #888;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content {
+    margin: 15px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000; /* Черный фон */
+    border: 1px solid #888;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content {
+    margin: 15px;
+}
+
+.close {
+    color: #ff0000; /* Красный цвет */
+    position: absolute; /* Абсолютное позиционирование */
+    bottom: 10px; /* Расположение снизу */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Корректировка позиции для центрирования */
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.alert {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 18px; /* Увеличенный размер шрифта */
+}
+
+.alert-success {
+    background-color: transparent; /* Прозрачный фон */
+    color: #00ff00; /* Ярко-зеленый текст */
+}
+
+
+.alert-danger {
+    background-color: #4d0000; /* Темно-красный фон */
+    color: #ff0000; /* Ярко-красный текст */
+}

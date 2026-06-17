@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="" th:href="@{/css/admin-panel.css}">
+</head>
+<body>
+
+<div>
+    <h1><d>Edit</d> User</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Save</th>
+        </tr>
+        </thead>
+        <tbody>
+        <form th:action="@{'/admin/' + ${user.id} + '/edit'}" method="post">
+            <tr>
+                <td th:text="${user.id}"></td>
+                <td> <input type="text" name="username1" th:value="${user.username}"> </td>
+                <td> <input type="text" name="password1" th:value="${user.password}"> </td>
+                <td>
+                    <button type="submit">Сохранить</button>
+                </td>
+            </tr>
+        </form>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

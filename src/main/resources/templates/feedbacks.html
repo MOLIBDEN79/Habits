@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+
+<head>
+    <title>Feedbacks</title>
+    <link rel="stylesheet" href="/css/feedbacks.css"> <!-- Подключите ваш CSS файл -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <title>Cactu</title>
+</head>
+
+<body>
+<h1>Feedbacks</h1>
+<div class="feedback-container">
+    <div th:each="feedback : ${feedbacks}" class="feedback-block">
+        <div class="feedback-content">
+            <p th:text="${feedback.message}">Message</p>
+            <p th:text="${feedback.submitDate}">Date</p>
+            <a th:href="@{/delete-feedback/{id}(id=${feedback.id})}" class="delete-button"
+               onclick="return confirm('Are you sure you want to delete this feedback?')">Delete</a>
+        </div>
+    </div>
+</div>
+
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="/" class="nav__logo">
+            <i class="ri-cactus-line"></i> Cactu
+        </a>
+
+
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="/" class="nav__link active-link">Home</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#new" class="nav__link">News</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/admin" class="nav__link">User</a>
+                </li>
+                <li class="nav__item">
+                    <a href="#Trafic" class="nav__link">Trafic</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/feedbacks" class="nav__link">Feedbacks</a>
+                </li>
+                <li class="nav__item">
+                    <a href="/calendar" class="nav__link">Callendar</a>
+                </li>
+            </ul>
+
+            <div class="nav__close" id="nav-close">
+                <i class="ri-close-line"></i>
+            </div>
+        </div>
+
+        <div class="nav__actions">
+            <a href="/profile" class="profile-text">
+                <i class="ri-user-line"></i>
+            </a>
+        </div>
+
+        <form th:action="@{/logout}" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+            <button type="submit" class="nav__actions" style="background: none; border: none;">
+                <i class="ri-logout-box-line" aria-hidden="true"></i>
+            </button>
+        </form>
+
+        <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line"></i>
+        </div>
+    </nav>
+</header>
+</body>
+
+</html>

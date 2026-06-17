@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Консольный appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Логирование для Spring Security -->
+    <logger name="org.springframework.security" level="DEBUG"/>
+
+    <!-- Логирование для веб-слоя Spring -->
+    <logger name="org.springframework.web" level="DEBUG"/>
+
+    <!-- логирования на INFO или WARN в продакшн-среде-->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>

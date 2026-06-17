@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habits all</title>
+    <link rel="stylesheet" href="/css/habits.css">
+</head>
+<body>
+<div class="container">
+    <div class="block">
+        <div class="content">
+            <img src="../img/img_4.png" class="quote-img" alt="">
+            <p>Питье воды поддерживает гидратацию и нормальное функционирование организма.</p>
+            <img src="../img/img_1.png" class="face" alt="">
+            <h3>Water</h3>
+            <button class="done-button">Выполнено</button>
+        </div>
+    </div>
+    <div class="block">
+        <div class="content">
+            <img src="../img/img_4.png" class="quote-img" alt="">
+            <p>Спорт улучшает физическое и психическое здоровье.</p>
+            <img src="../img/img.png" class="face" alt="">
+            <h3>Sport</h3>
+            <button class="done-button">Выполнено</button>
+        </div>
+    </div>
+    <div class="block">
+        <div class="content">
+            <img src="../img/img_4.png" class="quote-img" alt="">
+            <p>Приобретения новых привычек.</p>
+            <img src="../img/img_2.png" class="face" alt="">
+            <h3>Add habits</h3>
+            <button class="add-habit-button" id="addHabitButton">Добавить привычку</button>
+        </div>
+    </div>
+    <!-- Modal Structure -->
+    <div id="habitModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- Обратите внимание на изменения в атрибуте action -->
+            <form id="addHabitForm" th:action="@{/habits}" method="post">
+                <!-- Название привычки и описание без th:field -->
+                <label for="habitName">Название привычки:</label>
+                <input type="text" id="habitName" name="name" required>
+                <label for="habitDescription">Описание:</label>
+                <textarea id="habitDescription" name="description" required></textarea>
+                <label>
+                    <input type="checkbox" id="isPublic" name="isPublic"> Сделать публичной
+                </label>
+                <!-- CSRF токен будет добавлен автоматически, если он активен -->
+                <button type="submit">Сохранить привычку</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    // Код для открытия и закрытия модального окна
+    const modal = document.getElementById('habitModal');
+    const btn = document.getElementById('addHabitButton');
+    const span = document.getElementsByClassName('close')[0];
+
+    btn.onclick = function() {
+        modal.style.display = 'flex';
+    }
+
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>

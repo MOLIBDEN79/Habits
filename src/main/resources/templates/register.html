@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div class="navbar">
+    <!-- Placeholder for navbar, add links as needed -->
+</div>
+<main>
+    <section class="form-section">
+        <div class="form-container">
+            <h1>Регистрация</h1>
+            <form th:action="@{/register}" method="post">
+
+
+
+                <div class="form-group">
+
+                    <label for="username"></label><input type="text" id="username" name="username" placeholder="Имя пользователя" required>
+                </div>
+                <div class="form-group">
+
+
+                    <label for="password"></label><input type="password" id="password" name="password" placeholder="Пароль" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="submit-btn">Зарегистрироваться</button>
+                </div>
+                <span th:if="${message}" th:text="${message}"></span>
+            </form>
+            <div class="login">
+                <p>У тебя уже есть аккаунт?</p>
+                <button onclick="window.location.href='/login';" class="btn btn-secondary">Войти</button>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

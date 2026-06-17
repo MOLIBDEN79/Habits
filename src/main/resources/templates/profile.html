@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/profile.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<a href="javascript:history.back()" class="back-button2"><i class="fas fa-arrow-left"></i></a>
+
+<div class="wrapper">
+    <div class="cover cover-left"></div>
+    <div class="cover cover-right"></div>
+
+    <div class="book">
+        <!-- profile page -->
+        <div class="book-page page-left">
+            <div class="profile-page">
+                <img src="/img/ava.png" alt="">
+                <h1  th:text="${currentUser.username}"></h1>
+
+                <p>  Я
+
+                   ЛОХ </p>
+
+                <div class="btn-box">
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+                        <button type="submit" class="btn">Выйти из аккаунта</button>
+                    </form>
+                    <a href="#" class="btn contact-me">В конце</a>
+                </div>
+
+            </div>
+        </div>
+        <!-- page 1 & 2 -->
+        <div class="book-page page-right turn" id="turn-1">
+            <!-- page 1 (work experience) -->
+            <div class="page-front">
+                <h1 class="title">О себе</h1>
+
+                <div class="workeduc-box">
+                    <div class="workeduc-content">
+                        <span class="year"><i class='bx bx-party'></i>--------------</span>
+                        <h3>День рождения</h3>
+                        <p>2004-03-17?</p>
+                    </div>
+                    <div class="workeduc-content">
+                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
+                        <h3>Возраст</h3>
+                        <p>20</p>
+                    </div>
+                    <div class="workeduc-content">
+                        <span class="year"><i class='bx bxl-jsfiddle'></i>--------------</span>
+                        <h3>Моя страна</h3>
+                        <p>Казахстан</p>
+                    </div>
+                    <div class="workeduc-content">
+                        <span class="year"><i class='bx bx-universal-access'></i>--------------</span>
+                        <h3>Рост</h3>
+                        <p>200</p>
+                    </div>
+                </div>
+                <span class="number-page">1</span>
+                <!-- next button -->
+                <span class="nextprev-btn" data-page="turn-1">
+                                <i class='bx bx-chevron-right'></i>
+                            </span>
+            </div>
+
+            <!-- page 2 (education) -->
+            <div  class="page-back">
+                <h1 class="title">Интересы</h1>
+                <div class="workeduc-box">
+                    <div class="workeduc-content">
+                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
+                        <h3>Образование</h3>
+                        <p>школьник студент</p>
+                    </div>
+                    <div class="workeduc-content">
+                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
+                        <h3>Увлечения</h3>
+                        <p>Преследование кого-то</p>
+                    </div>
+                    <div class="workeduc-content">
+                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
+                        <h3>Профессиональные интересы</h3>
+                        <p>GPT разрабодчик ?</p>
+                    </div>
+                    <div class="workeduc-content">
+                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
+                        <h3>Личные успехи</h3>
+                        <p>Сплю много</p>
+                    </div>
+                    <div class="workeduc-content">
+                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
+                        <h3>Цель</h3>
+                        <p>Дисциплина </p>
+                    </div>
+                </div>
+                <span class="number-page">2</span>
+                <!-- prev button -->
+                <span class="nextprev-btn back" data-page="turn-1">
+                                <i class='bx bx-chevron-left'></i>
+                            </span>
+            </div>
+        </div>
+        <!-- page 3 & 4 -->
+        <div class="book-page page-right turn" id="turn-2">
+            <!-- page 3 (my serices) -->
+            <div class="page-front">
+                <h1 class="title">Уровень</h1>
+                <div class="services-box">
+
+                    <div class="services-content">
+                        <i class='bx bx-bar-chart-alt'></i>
+                        <h3>пример 1</h3>
+                        <img src="/img/fon/1.png" alt="">
+                        <a href="/start" class="btn">Start</a>
+                    </div>
+                </div>
+                <span class="number-page">3</span>
+                <!-- next button -->
+                <span class="nextprev-btn" data-page="turn-2">
+                                <i class='bx bx-chevron-right'></i>
+                            </span>
+            </div>
+            <!-- page 4 (my skills) -->
+            <div class="page-back">
+                <h1 class="title">Прывычки</h1>
+                <div class="skills-box">
+                    <div class="skills-content">Здоровый образ жизни
+                        <div class="content">
+                            <span>Спорт</span>
+                            <span> ХОЧУ </span>
+                            <span>Физкультура</span>
+                            <span>Зарядка</span>
+                            <span>Йога</span>
+                        </div>
+                    </div>
+                    <div class="skills-content">Развития
+                        <div class="content">
+                            <span>Англиский</span>
+                            <span>География</span>
+                            <span>Рисования</span>
+                            <span>Яой мага</span>
+
+                        </div>
+                    </div>
+                </div>
+                <span class="number-page">4</span>
+                <!-- prev button -->
+                <span class="nextprev-btn back" data-page="turn-2">
+                                <i class='bx bx-chevron-left'></i>
+                            </span>
+            </div>
+        </div>
+        <!-- page 5 & 6 -->
+        <div class="book-page page-right turn" id="turn-3">
+            <!-- page 5 (Lates project or my portfolio) -->
+            <div class="page-front">
+                <h1 class="title">Цитаты</h1>
+
+                <div class="portfolio-box">
+                    <div class="img-box">
+                        <img src="/img/5959.png" alt="">
+                    </div>
+                    <div class="info-box">
+                        <div class="info-title">
+                            <h3>Послушай, дорогой друг</h3>
+
+                        </div>
+                        <p>Лучше спереди на 5 см, чем сзади</p>
+                    </div>
+                    <div class="btn-box">
+                        <button class="btn" id="openModalButton">Изменить</button>
+                        <a class="btn" th:if="${isAdmin}" th:href="@{/admin}" >Admin Panel</a>
+
+
+                    </div>
+                </div>
+                <span class="number-page">5</span>
+                <!-- back profile button -->
+                <a href="#" class="back-profile">
+                    <p>Profile</p>
+                    <i class='bx bxs-user'></i>
+                </a>
+            </div>
+            <!-- page 6  -->
+        </div>
+    </div>
+
+</div>
+
+
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1 class="form-title">Изменить</h1>
+        <form id="registrationForm" action="#" method="post" enctype="multipart/form-data">
+            <div class="main-user-info">
+                <!-- Avatar Upload -->
+                <div class="user-input-box">
+                    <label for="avatar">Аватарка</label>
+                    <input type="file" id="avatar" name="avatar" accept="image/*"/>
+                </div>
+                <!-- Additional user info -->
+                <div class="user-input-box">
+                    <label for="nickname">Nickname</label>
+                    <input type="text" id="nickname" name="nickname" placeholder="Enter Nickname"/>
+                </div>
+                <div class="user-input-box">
+                    <label for="birthDate">Дата рождения</label>
+                    <input type="date" id="birthDate" name="birthDate"/>
+                </div>
+                <div class="user-input-box">
+                    <label for="age">Возраст</label>
+                    <input type="number" id="age" name="age" placeholder="Enter Age"/>
+                </div>
+                <!-- Social Networks -->
+                <div class="user-input-box">
+                    <label for="height">Рост</label>
+                    <input type="number" id="height" name="height" placeholder="Enter Height"/>
+                </div>
+                <!-- Country -->
+                <!-- Country Select -->
+                <div class="user-input-box">
+                    <label for="countrySelect">Страна</label>
+                    <select id="countrySelect" name="country">
+                        <option value="kazakhstan">Казахстан</option>
+                        <option value="russia">Россия</option>
+                        <option value="ukraine">Украина</option>
+                        <option value="belarus">Беларусь</option>
+                        <option value="uzbekistan">Узбекистан</option>
+                        <option value="latvia">Латвия</option>
+                        <option value="kyrgyzstan">Кыргызстан</option>
+                        <option value="tajikistan">Таджикистан</option>
+                        <option value="estonia">Эстония</option>
+                        <option value="turkmenistan">Туркменистан</option>
+                        <option value="armenia">Армения</option>
+                        <option value="georgia">Грузия</option>
+                        <option value="azerbaijan">Азербайджан</option>
+                        <option value="moldova">Молдова</option>
+                        <option value="lithuania">Литва</option>
+                        <option value="israel">Израиль</option>
+                        <option value="germany">Германия</option>
+                        <option value="united-states">Соединенные Штаты Америки</option>
+                        <option value="canada">Канада</option>
+                        <!-- Add more countries as needed -->
+                    </select>
+                </div>
+                <!-- Education -->
+                <div class="user-input-box">
+                    <label for="education"> Краткая информация о себе</label>
+                    <input type="text" id="education" name="education" placeholder="Enter Education"/>
+                </div>
+                <!-- Hobbies -->
+                <div class="user-input-box">
+                    <label for="hobbies">Увлечения</label>
+                    <textarea id="hobbies" name="hobbies" placeholder="Enter Hobbies"></textarea>
+                </div>
+                <!-- Professional Interests -->
+                <div class="user-input-box">
+                    <label for="professionalInterests">Профессиональные интересы</label>
+                    <textarea id="professionalInterests" name="professionalInterests" placeholder="Enter Professional Interests"></textarea>
+                </div>
+                <!-- Personal Data -->
+                <div class="user-input-box">
+                    <label for="personalData">Личные успехи</label>
+                    <textarea id="personalData" name="personalData" placeholder="Enter Personal Data"></textarea>
+                </div>
+                <!-- Goals -->
+                <div class="user-input-box">
+                    <label for="goals">Цели</label>
+                    <textarea id="goals" name="goals" placeholder="Enter Goals"></textarea>
+                </div>
+                <!-- Quote -->
+                <div class="user-input-box">
+                    <label for="quote">Любимая Цитата</label>
+                    <textarea id="quote" name="quote" placeholder="Enter Favorite Quote"></textarea>
+                </div>
+                <!-- Gender Details -->
+                <div class="gender-details-box">
+                    <span class="gender-title"></span>
+                    <div class="gender-category">
+                        <input type="radio" name="userCategory" id="schoolStudent" value="schoolStudent">
+                        <label for="schoolStudent">Школьник</label>
+                        <input type="radio" name="userCategory" id="universityStudent" value="universityStudent">
+                        <label for="universityStudent">Студент</label>
+                        <input type="radio" name="userCategory" id="other" value="other">
+                        <label for="other">Другое</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-submit-btn">
+                <input type="submit" value="Сохранить">
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+<script src="/js/profile.js"></script>
+
+</body>
+
+</html>

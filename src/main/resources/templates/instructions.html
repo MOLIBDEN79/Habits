@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== FAVICON ===============-->
+    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
+
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.min.css">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <title>Cactu</title>
+</head>
+<body>
+<!--==================== HEADER ====================-->
+<header class="header" id="header">
+    <nav class="nav container">
+        <a href="/" class="nav__logo">
+            <i class="ri-cactus-line"></i> Cactu
+        </a>
+
+        <div class="nav__menu" id="nav-menu">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <a href="#home" class="nav__link active-link">Главная</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="#new" class="nav__link">Правила</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="#care" class="nav__link">Инструкция</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="#contact" class="nav__link">Если</a>
+                </li>
+
+                <li class="nav__item">
+                    <a href="/calendar" class="nav__link">Календарь</a>
+                </li>
+            </ul>
+
+            <!-- Close button -->
+
+            <!-- Close button -->
+            <div class="nav__close" id="nav-close">
+                <i class="ri-close-line"></i>
+            </div>
+        </div>
+
+        <div class="nav__actions">
+            <a href="/profile" class="profile-text">
+                <i class="ri-user-line"></i>
+            </a>
+        </div>
+
+        <form th:action="@{/logout}" method="post">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+            <button type="submit" class="nav__actions" style="background: none; border: none;">
+                <i class="ri-logout-box-line" aria-hidden="true"></i>
+            </button>
+        </form>
+
+
+        <!-- Toggle button -->
+        <div class="nav__toggle" id="nav-toggle">
+            <i class="ri-menu-line"></i>
+        </div>
+
+        </div>
+
+    </nav>
+</header>
+<!--==================== MAIN ====================-->
+<main class="main">
+    <!--==================== HOME ====================-->
+    <section class="home section" id="home">
+        <div class="home__container container grid">
+            <img src="img/nom.gif" alt="image" class="home__img">
+
+            <div class="home__data">
+                <h1 class="home__title">
+                    ИНСТРУКЦИЯ ПО  <br>
+                    <span>CACTU !</span>  <br>
+                     <br>
+                </h1>
+
+                <p class="home__description">
+                    Вы сами создаёте себя и совершенствуетесь вместе с <b>CACTU</b>
+                </p>
+
+                <div class="home__buttons">
+                    <a href="/start" class="button">
+                        <span>
+                           <i class="ri-arrow-right-line"></i>
+                        </span>
+
+                        НАЧАТЬ
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--==================== NEWS ====================-->
+    <section class="new section" id="new">
+        <div class="new__container container grid">
+            <div class="new__data">
+                <h2 class="section__title">
+                    ПРАВИЛА САЙТА :  <br> CACTU
+                </h2>
+
+
+                <h2 class="section__title">
+                    Регистрация и Создание Профиля: <br>
+                </h2>
+
+                <p class="new__description">
+
+                    Присоединяйтесь к нашему зелёному сообществу!
+                    Зарегистрируйтесь и создайте свой профиль,
+                    расскажите немного о себе и о том,
+                    какие привычки вы хотите внедрить или изменить.
+                </p>
+
+                <h2 class="section__title">
+                    Создание Привычек: <br>
+                </h2>
+                <p class="new__description">
+                    Ваше личное поле для посадки!
+                    Здесь вы можете посадить собственные «семена» привычек
+                    или выбрать готовые из нашего общего сада.
+                    Добавьте описание и укажите, к каким результатам стремитесь.
+
+                </p>
+
+                <h2 class="section__title">
+                    Игровой Процесс: <br>
+                </h2>
+                <p class="new__description">
+                    Наш кактус растёт вместе с вами!
+                    На сайте 10 уровней, каждый из которых символизируется растущим кактусом.
+                    Собирайте баллы, выполняя привычки, чтобы ваш кактус цвёл!
+
+                </p>
+
+
+                <h2 class="section__title">
+                    Ежедневное Выполнение: <br>
+                </h2>
+                <p class="new__description">
+                    Не забывайте ухаживать за своим кактусом каждый день.
+                    Если пропустите, ваш кактус может немного увядать,
+                    а ваш уровень и баллы уменьшатся.
+
+                </p>
+
+
+                <h2 class="section__title">
+                    Потеря Уровня:<br>
+                </h2>
+                <p class="new__description">
+
+                    Если вы забудете про своего зелёного друга более
+                    одного дня без серьёзной причины, уровень может понизиться.
+                    Давайте поддерживать постоянство!
+
+                </p>
+
+                <h2 class="section__title">
+                    Дополнительные Игры: <br>
+                </h2>
+                <p class="new__description">
+
+                    Ищите развлечения и дополнительные баллы в нашем игровом уголке.
+                    Играйте и выигрывайте, чтобы ваш кактус рос быстрее!
+
+                </p>
+
+            </div>
+
+            <div class="new__content grid">
+                <article class="new__card">
+                    <img src="../img/new-cactus-1.png" alt="image" class="new__img">
+                    <h2 class="new__title">РАЗ</h2>
+                </article>
+
+                <article class="new__card">
+                    <img src="../img/new-cactus-2.png" alt="image" class="new__img">
+                    <h2 class="new__title">ДВА</h2>
+                </article>
+
+                <article class="new__card">
+                    <img src="../img/new-cactus-3.png" alt="image" class="new__img">
+                    <h2 class="new__title">ТРИ</h2>
+                </article>
+
+                <article class="new__card">
+                    <img src="../img/new-cactus-2.png" alt="image" class="new__img">
+                    <h2 class="new__title">ЧЕТЫРЕ</h2>
+                </article>
+
+                <article class="new__card">
+                    <img src="../img/new-cactus-1.png" alt="image" class="new__img">
+                    <h2 class="new__title">ПЯТЬ</h2>
+                </article>
+
+                <article class="new__card">
+                    <img src="../img/new-cactus-2.png" alt="image" class="new__img">
+                    <h2 class="new__title">ШЕСТЬ</h2>
+                </article>
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    <!--==================== CARE ====================-->
+    <section class="care section" id="care">
+        <h2 class="section__title">
+            Как пользоваться сайтом: <br> ВАШЕГО CACTU
+        </h2>
+
+        <div class="care__container container grid">
+            <img src="../img/studying.gif" alt="image" class="care__img">
+
+            <ul class="care__list">
+                <li class="care__item">
+                    <i class="ri-checkbox-fill"></i>
+                    <p>
+                        Войдите, используя ваш логин и пароль,
+                        и погрузитесь в мир кактусов и хороших привычек!
+                    </p>
+                </li>
+
+                <li class="care__item">
+                    <i class="ri-checkbox-fill"></i>
+                    <p>
+                        На главной странице вы увидите вашего кактуса,
+                        его текущий уровень,
+                        накопленные баллы и список привычек.
+                    </p>
+                </li>
+
+                <li class="care__item">
+                    <i class="ri-checkbox-fill"></i>
+                    <p>
+                        Посетите нашу оранжерею привычек,
+                        чтобы добавить новые или выбрать из уже существующих.
+                    </p>
+                </li>
+
+                <li class="care__item">
+                    <i class="ri-checkbox-fill"></i>
+                    <p>
+                        Отмечайте каждый день свои успехи.
+                        За каждую выполненную привычку
+                        ваш кактус будет благодарить вас баллами!
+                    </p>
+                </li>
+
+                <li class="care__item">
+                    <i class="ri-checkbox-fill"></i>
+                    <p>
+                        Отдохните и развлекитесь, играя в наши игры,
+                        и заодно заработайте дополнительные баллы.
+                    </p>
+                </li>
+
+                <li class="care__item">
+                    <i class="ri-checkbox-fill"></i>
+                    <p>
+                        Следите за ростом вашего кактуса
+                        и стремитесь к новым вершинам.
+                    </p>
+                </li>
+
+                <li class="care__item">
+                    <i class="ri-checkbox-fill"></i>
+                    <p>
+                        Если у вас возникнут вопросы или проблемы,
+                        всегда можно обратиться в наш уютный раздел поддержки.
+                    </p>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+    <!--==================== CONTACT ====================-->
+    <section class="contact section" id="contact">
+        <h2 class="section__title">
+            ЕСЛИ ЧТО-ТО ВОЛНУЕТЬ  <br> СВЯЖИТЕСЬ С НАМИ
+        </h2>
+
+        <div class="contact__container container grid">
+            <img src="../img/hug.gif" alt="image" class="contact__img">
+
+            <div class="contact__content">
+
+                <div>
+
+
+                    <address class="contact__info">
+                        Друзья, каждый день приносит новые возможности и новые вызовы.
+                        Не бойтесь ошибаться, ведь каждая неудача учит вас и делает сильнее.
+
+                    </address>
+
+                    <address class="contact__info">
+
+                        Помните, что успех – это не остановка перед препятствиями, а умение подниматься после падений.
+                        Верьте в себя, поддерживайте окружающих и продолжайте двигаться вперёд.
+
+                    </address>
+
+
+                    <address class="contact__info">
+
+                        Ваши мечты достижимы, каждый шаг вперёд приближает вас к ним. Никогда не сдавайтесь,
+                        продолжайте идти вперёд, и вы увидите, как ваши усилия приведут к замечательным результатам.  <br>
+                        Вперёд к успеху!
+                    </address>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!--==================== FOOTER ====================-->
+<footer class="footer">
+    <div class="footer__container container grid">
+        <div>
+            <a href="#" class="footer__logo">
+                <i class="ri-cactus-line"></i> Cactu
+            </a>
+
+            <p class="footer__description">Развивайтесь вместе с <br> CACTU</p>
+        </div>
+    </div>
+
+    <span class="footer__copy">
+            &#169; Все права защищены CACTU.corp
+         </span>
+</footer>
+
+<!--========== SCROLL UP ==========-->
+<a href="#" class="scrollup" id="scroll-up">
+    <i class="ri-arrow-up-line"></i>
+</a>
+
+<!--=============== SCROLLREVEAL ===============-->
+<script src="../js/scrollreveal.min.js"></script>
+
+<!--=============== MAIN JS ===============-->
+<script src="../js/main.js"></script>
+</body>
+</html>

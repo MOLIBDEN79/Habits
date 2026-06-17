@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Трекер</title>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+<h1>Habits</h1>
+<ul>
+    <li th:each="habit : ${habits}">
+        <span th:text="${habit.name}">Name of Habit</span>
+        <form th:action="@{/habit/complete/{id}(id=${habit.id})}" method="post">
+            <button type="submit">Выполнено</button>
+        </form>
+    </li>
+</ul>
+</body>
+</html>

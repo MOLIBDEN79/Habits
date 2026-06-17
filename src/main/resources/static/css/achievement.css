@@ -1,0 +1,162 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: hsl(228, 6%, 8%);
+    padding-top: 35px;
+    font-family: 'raleway', sans-serif;
+    color: #498249;
+}
+
+.wrapper h1 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    padding: 5px 15px;
+}
+
+.content-box {
+    width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 35px;
+}
+
+.card {
+    min-height: 220px;
+    width: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    background: #0e0b0b;
+    margin: 10px 5px;
+    transition: 0.3s;
+}
+
+.card i {
+    margin-bottom: 20px;
+    color: #3aff24;
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.card p {
+    color: #6c757d;
+    text-align: center;
+}
+
+.card:hover {
+    background: linear-gradient(90deg, rgba(2, 2, 36, 0.7) 0%, rgba(9, 221, 101, 0.7) 35%, rgba(3, 103, 28, 0.7) 100%), url('/static/img/fon/1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 1;
+}
+
+
+
+.card:nth-child(1) {
+    background: linear-gradient(90deg, rgba(2, 2, 36, 0.7) 0%, rgba(9, 221, 101, 0.7) 35%, rgba(3, 103, 28, 0.7) 100%), url('/static/img/fon/1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+.card:hover p,
+.card:hover i {
+    color: #fff;
+}
+
+.card:nth-child(2):hover {
+    background: linear-gradient(90deg, rgba(2, 2, 36, 0.7) 0%, rgba(9, 9, 221, 0.7) 35%, rgba(0, 212, 255, 0.7) 100%), url('/static/img/fon/2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.card:nth-child(3):hover {
+    background: linear-gradient(90deg, rgba(2, 2, 36, 0.7) 0%, rgba(221, 9, 108, 0.7) 35%, rgba(105, 191, 208, 0.7) 100%), url('/static/img/fon/3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.card:nth-child(4):hover {
+    background: linear-gradient(90deg, rgba(197, 124, 137, 0.8) 0%, rgba(156, 102, 70, 0.8) 50%, rgba(193, 189, 135, 0.8) 100%), url('/static/img/fon/4.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.card:nth-child(5):hover {
+    background: linear-gradient(90deg, rgba(192, 87, 237, 0.8) 0%, rgba(231, 84, 213, 0.8) 50%, rgba(153, 3, 126, 0.8) 100%), url('/static/img/fon/5.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.card:nth-child(6):hover {
+    background: linear-gradient(90deg, rgba(255, 128, 50, 0.8) 0%, rgba(253, 201, 46, 0.8) 50%, rgba(235, 228, 25, 0.8) 100%), url('/static/img/fon/6.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+.card:nth-child(7):hover {
+    background: linear-gradient(90deg, rgba(2, 36, 36, 0.7) 0%, rgba(9, 221, 9, 0.7) 35%, rgba(0, 255, 212, 0.7) 100%), url('/static/img/fon/7.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+.card:nth-child(8):hover {
+    background: linear-gradient(90deg, rgba(36, 2, 2, 0.7) 0%, rgba(221, 9, 9, 0.7) 35%, rgba(212, 0, 255, 0.7) 100%), url('/static/img/fon/8.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.card:nth-child(9):hover {
+    background: linear-gradient(90deg, rgba(36, 36, 2, 0.7) 0%, rgba(221, 221, 9, 0.7) 35%, rgba(255, 212, 0, 0.7) 100%), url('/static/img/fon/9.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.card:nth-child(10):hover {
+    background: linear-gradient(90deg, rgba(2, 36, 36, 0.7) 0%, rgba(9, 221, 221, 0.7) 35%, rgba(0, 255, 255, 0.7) 100%), url('/static/img/fon/10.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+@media (max-width: 991px) {
+    .wrapper h1 {
+        font-size: 2.5em;
+    }
+
+    .wrapper p {
+        padding: 5px 15px;
+    }
+
+    .content-box {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .card {
+        min-width: 300px;
+        margin: 10px auto;
+    }
+}

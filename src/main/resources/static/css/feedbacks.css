@@ -1,0 +1,313 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    background: linear-gradient(to bottom, #000000, #228B22);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.feedback-container {
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.feedback-block {
+    width: 200px; /* Ширина блока фиксированная */
+    background-color: #333232;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 20px; /* Дополнительный отступ снизу */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feedback-block:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.feedback-content {
+    text-align: center;
+    width: 100%;
+    border-bottom: 2px solid green;
+    padding-bottom: 10px;
+    margin-bottom: 20px; /* Добавлен отступ между текстом и кнопкой */
+}
+
+.feedback-content p {
+    color: #d3c1c1;
+    word-wrap: break-word; /* Перенос слов для предотвращения выхода текста за пределы блока */
+    margin: 10px 0;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: #d3c1c1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    align-self: center;
+}
+
+.delete-button:hover {
+    background-color: #641714;
+}
+
+h1 {
+    color: #d3c1c1;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+    --header-height: 3.5rem;
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --first-color: hsl(93, 54%, 54%);
+    --first-color-alt: hsl(93, 50%, 48%);
+    --first-color-light: hsl(93, 58%, 66%);
+    --title-color: hsl(228, 8%, 98%);
+    --text-color: hsl(228, 8%, 70%);
+    --white-color: hsl(228, 8%, 98%);
+    --black-color: hsl(228, 6%, 4%);
+    --body-color: hsl(228, 6%, 8%);
+    --container-color: hsl(228, 6%, 12%);
+    --shadow-img: 0 0 48px hsla(93, 54%, 54%, .4);
+    --gradient-card: linear-gradient(180deg,
+    hsla(93, 8%, 8%),
+    hsla(93, 40%, 30%));
+
+    /*========== Font and typography ==========*/
+    --body-font: "Montserrat", sans-serif;
+    --biggest-font-size: 2.25rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: .938rem;
+    --small-font-size: .813rem;
+
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+    :root {
+        --biggest-font-size: 4.25rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+    }
+}
+
+/*=============== BASE ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+h1, h2, h3, h4 {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+    max-width: 100%;
+    margin-inline: 0; /* Убираем отступы по краям */
+}
+
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.section {
+    padding-block: 5rem 1rem;
+}
+
+.section__title {
+    font-size: var(--h1-font-size);
+    font-weight: var(--font-bold);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.main {
+    overflow: hidden;
+}
+
+/*=============== HEADER & NAV ===============*/
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.85); /* Adjust the transparency as needed */
+    z-index: var(--z-fixed);
+    padding: 0 1rem; /* Add padding to header */
+}
+
+.nav {
+    position: relative;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav__logo,
+.nav__toggle,
+.nav__actions {
+    display: flex;
+    color: var(--title-color);
+    cursor: pointer;
+}
+
+.nav__logo {
+    font-weight: var(--font-semi-bold);
+    column-gap: .25rem;
+    align-items: center;
+}
+
+.nav__logo i {
+    color: var(--first-color);
+    font-size: 1.5rem;
+    color: var(--first-color);
+}
+
+.nav__actions {
+    font-size: 1.25rem;
+    column-gap: .5rem;
+    align-items: center;
+}
+
+a.profile-text:active,
+a.profile-text:hover,
+a.profile-text {
+    text-decoration: none;
+    color: #666;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1150px) {
+    .nav__menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        background-color: hsla(228, 24%, 6%, .2);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        width: 80%;
+        height: 100%;
+        padding: 6rem 3rem 0;
+        transition: right .4s;
+    }
+}
+
+.nav__list {
+    display: flex;
+    align-items: center;
+    row-gap: 3rem;
+    justify-content: space-between;
+}
+
+.nav__link {
+    flex-grow: 1;
+    text-align: center; /* Выравнивание текста по центру */
+    color: var(--text-color);
+    font-weight: var(--font-semi-bold);
+    transition: color .3s;
+    padding: 0.75rem 1rem; /* Add padding to links */
+}
+
+.nav__link:hover, .nav__link.active-link {
+    color: var(--first-color);
+}
+
+.nav__close {
+    position: absolute;
+    top: 1.15rem;
+    right: 1.5rem;
+    font-size: 1.25rem;
+}
+
+/* Show menu */
+.show-menu {
+    right: 0;
+}
+
+/* Add blur header */
+.blur-header::after {
+    content: "";
+    position: absolute;
+    width: 1000%;
+    height: 100%;
+    background-color: hsla(228, 24%, 6%, .2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Active link */
+.active-link {
+    color: var(--first-color);
+}

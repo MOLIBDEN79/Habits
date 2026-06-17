@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Башня</title>
+    <link rel="stylesheet" type="text/css" href="/css/game1.css" />
+    <link
+            href="https://fonts.googleapis.com/css?family=Tangerine&display=swap"
+            rel="stylesheet"/>
+</head>
+<body>
+<h1>Башня</h1>
+<div class="container">
+    <div class="first-panel panels">
+        <div class="box box-f" data-length="6"></div>
+        <div class="box box-e" data-length="5"></div>
+        <div class="box box-d" data-length="4"></div>
+        <div class="box box-c" data-length="3"></div>
+        <div class="box box-b" data-length="2"></div>
+        <div class="box box-a" data-length="1"></div>
+    </div>
+    <div class="second-panel panels"></div>
+    <div class="third-panel panels"></div>
+</div>
+
+<div class="win-screen"></div>
+<div class="mobile-instructions">
+    <u>Instructions</u>
+    <div class="instructions-dropdown toggle-visibility">
+        <p>
+            Ваша цель — переместить все блоки в последний столбец. Переместите
+            блоки, щелкнув блок, а затем щелкнув нужный столбец
+            чтобы разместить его. Одновременно можно перемещать только один блок. Ты можешь только
+            переместить верхний блок любого столбца.<span
+        >Вы не можете ставить блок на блок, меньший его самого.</span >
+        </p>
+    </div>
+</div>
+<div class="button-div">
+    <div class="move-counter mobile-move-counter">0</div>
+    <button type="button" class="easymode">Легкий</button>
+    <button type="button" class="normalmode">Норм</button>
+    <button type="button" class="hardmode">Сложный</button>
+    <button type="button" class="resetbutton">Сброс</button>
+    <button type="button" class="testbutton">Чит</button>
+    <div class="move-counter normal-move-counter">0</div>
+</div>
+<p class="normal-instructions">
+    Инструкции: Ваша цель – переместить все блоки в последний столбец.
+    Переместите блоки, щелкнув блок, а затем щелкнув столбец, который вы хотите
+    хотите разместить его. Одновременно можно перемещать только один блок. Ты можешь только
+    переместить верхний блок любого столбца.
+    <span>Вы не можете ставить блок на блок, меньший, чем он сам.</span>
+</p>
+<script type="text/javascript" src="/js/game1.js"></script>
+</body>
+</html>

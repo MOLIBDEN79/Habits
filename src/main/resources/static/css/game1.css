@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+body {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    margin: 0 auto;
+    background: black;
+    color: white;
+    font-size: 14px; /* Уменьшенный базовый размер шрифта */
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    margin: -20px 0px 0px 0px;
+}
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 60px; /* Уменьшенный базовый размер шрифта */
+    margin: 20px 0px 40px 0px;
+}
+p {
+    margin: 30px 10%;
+    line-height: 25px;
+}
+span {
+    color: rgb(27, 164, 27);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.button-div {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    max-width: 80%;
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+.button-div button { /* Добавьте базовые стили для кнопок внутри .button-div */
+    transition: background-color 0.5s, color 0.5s, border-color 0.5s; /* Плавный переход цветов */
+}
+
+.button-div button:hover { /* Стили при наведении */
+    background-color: #3bea1c; /* Новый цвет фона */
+    color: #fff; /* Новый цвет текста */
+    border-color: #3bea1c; /* Новый цвет границы */
+}
+
+.resetbutton,
+.testbutton,
+.move-counter,
+.easymode,
+.normalmode,
+.hardmode {
+    font-size: 24px; /* Уменьшенный базовый размер шрифта */
+    background: black;
+    border: 5px solid rgb(27, 164, 27);
+    border-radius: 5px;
+    margin: 15px 10px;
+    color: white;
+    width: 20%;
+    font-family: 'Dancing Script', cursive;
+}
+.resetbutton {
+    display: none;
+}
+.panels {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    border: 5px solid black;
+    width: 28%;
+    margin: 0 10px;
+    height: 90%;
+    background-image: linear-gradient(black, rgb(27, 164, 27));
+}
+.first-panel,
+.second-panel,
+.third-panel {
+    padding: 0px 0px 10px 0px;
+    border-radius: 10px;
+}
+.box {
+    padding: 20px 15px;
+    margin: 2px 0;
+    border: 5px solid black;
+    border-radius: 5px;
+    background: rgb(27, 164, 27);
+}
+.box-a {
+    width: 8%;
+}
+.box-b {
+    width: 18%;
+}
+.box-c {
+    width: 28%;
+}
+.box-d {
+    width: 38%;
+}
+.box-e {
+    width: 48%;
+}
+.box-f {
+    width: 58%;
+    display: none;
+}
+.win-screen {
+    display: none;
+    margin: 0px 0px 20px 0px;
+}
+.selected-box {
+    margin: 0px 0px 10px 0px;
+}
+.mobile-move-counter,
+.mobile-instructions {
+    display: none;
+}
+.mobile-dropdown {
+    max-width: 80%;
+}
+.toggle-visibility {
+    display: none;
+}
+@media screen and (max-width: 800px) {
+    .button-div {
+        flex-direction: column;
+        align-items: center;
+    }
+    .resetbutton,
+    .testbutton,
+    .move-counter,
+    .easymode,
+    .normalmode,
+    .hardmode {
+        font-size: 14px; /* Уменьшенный базовый размер шрифта */
+        margin: 5px 0;
+        padding: 5px 0;
+        width: 50%;
+    }
+    .box {
+        padding: 10px 5px;
+    }
+    .panels {
+        height: 200px;
+    }
+    .container {
+        height: 250px;
+    }
+    h1 {
+        margin: 0;
+        padding: 5px 0px;
+    }
+    .normal-move-counter {
+        display: none;
+    }
+    .mobile-move-counter {
+        display: block;
+        width: 30%;
+        font-size: 32px;
+    }
+    .normal-instructions {
+        display: none;
+    }
+    .mobile-instructions {
+        display: block;
+        margin: 0px 0px 10px 0px;
+    }
+}

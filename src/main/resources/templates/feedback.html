@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Form </title>
+    <link rel="stylesheet" href="/css/feedback.css">
+</head>
+<body>
+<div class="feedback-container">
+    <h1>Анонимный опрос</h1>
+    <form th:action="@{/feedback}" th:object="${feedback}" method="post">
+        <label>
+            <textarea name="message" placeholder="Мнения без страха" required></textarea>
+        </label>
+        <button type="submit">Отправить</button>
+    </form>
+    <div th:if="${success}" class="modal" id="successModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="alert alert-success" role="alert">
+                <p th:text="${success}"></p>
+            </div>
+        </div>
+    </div>
+    <div th:if="${error}" class="modal" id="errorModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="alert alert-danger" role="alert">
+                <p th:text="${error}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="animation-container">
+    <div class="bubbles">
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:19;"></span>
+        <span style="--i:20;"></span>
+        <span style="--i:22;"></span>
+        <span style="--i:25;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:21;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:26;"></span>
+        <span style="--i:17;"></span>
+        <span style="--i:13;"></span>
+
+        <span style="--i:28;"></span>
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:19;"></span>
+        <span style="--i:20;"></span>
+        <span style="--i:22;"></span>
+        <span style="--i:25;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:21;"></span>
+        <span style="--i:15;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:26;"></span>
+        <span style="--i:17;"></span>
+        <span style="--i:13;"></span>
+        <span style="--i:28;"></span>
+
+
+        <span style="--i:28;"></span>
+        <span style="--i:11;"></span>
+        <span style="--i:12;"></span>
+        <span style="--i:24;"></span>
+        <span style="--i:10;"></span>
+        <span style="--i:14;"></span>
+        <span style="--i:23;"></span>
+        <span style="--i:18;"></span>
+        <span style="--i:16;"></span>
+        <span style="--i:19;"></span>
+        <span style="--i:20;"></span>
+        <span style="--i:22;"></span>
+        <span style="--i:25;"></span>
+        <span style="--i:18;"></span>
+    </div>
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <p id="popup-message"></p>
+        </div>
+    </div>
+
+</div>
+<script>
+    var successModal = document.getElementById('successModal');
+    var errorModal = document.getElementById('errorModal');
+    var closeButtons = document.getElementsByClassName('close');
+
+    for (var i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].onclick = function() {
+            this.parentElement.parentElement.style.display = 'none';
+        }
+    }
+
+    if (successModal) {
+        successModal.style.display = 'block';
+    }
+    if (errorModal) {
+        errorModal.style.display = 'block';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/css/start.css">
+</head>
+<body>
+<div class="profile-section">
+    <div class="progress-bar">
+        <div class="progress" style="width: 70%;"></div>
+    </div>
+    <div class="nickname">Ты черт</div>
+    <div class="level">Уровень: Ты почти БОГ</div>
+    <div class="achievements">Достижения: "Заботливый"</div>
+    <a href="/profile" style="text-decoration: none;">
+        <button class="btn" style="--i:0; --clr: #04fc43;">Личные данные</button>
+    </a>
+    <a href="/add" style="text-decoration: none;">
+        <button class="btn" style="--i:0; --clr: #04fc43;">Категория</button>
+    </a>
+    <a href="/calendar" style="text-decoration: none;">
+        <button class="btn" style="--i:0; --clr: #04fc43;">Календарь</button>
+    </a>
+    <div class="social-links">
+        <ul class="social-row">
+            <li style="--i:11; --clr: #04fc43;"><a href="https://www.instagram.com/"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            <li style="--i:9; --clr: #04fc43;"><a href="https://www.youtube.com/"><ion-icon name="logo-youtube"></ion-icon></a></li>
+            <li style="--i:48; --clr: #04fc43;"><a href="https://twitter.com/"><ion-icon name="logo-twitter"></ion-icon></a></li>
+            <li style="--i:13; --clr: #04fc43;"><a href="https://github.com/"><ion-icon name="logo-github"></ion-icon></a></li>
+            <li style="--i:13; --clr: #04fc43;"><a href="https://web.telegram.org/a/"><ion-icon name="send-outline"></ion-icon></a></li>
+        </ul>
+    </div>
+
+</div>
+
+<ul class="menu">
+    <div class="toggle" style="width: 180px; height: 180px; border-radius: 50%; overflow: hidden; display: flex; justify-content: center; align-items: center;"><img src="../img/cute-cactus-cactus.gif" alt="Photo" style="width: 420px; height: 420px; border-radius: 50%;"></div>
+    <li style="--i:0; --clr: #04fc43;"><a href="/"><ion-icon name="home-outline"></ion-icon></a></li>
+    <li style="--i:1; --clr: #04fc43;"><a href="/feedback"><ion-icon name="logo-wechat"></ion-icon></a></li>
+    <li style="--i:2; --clr: #04fc43;"><a href="/payment"><ion-icon name="map-outline"></ion-icon></a></li>
+    <li style="--i:3; --clr: #04fc43;"><a href="/add"><ion-icon name="school-outline"></ion-icon></a></li>
+    <li style="--i:4; --clr: #04fc43;"><a href="/achievement"><ion-icon name="ribbon-outline"></ion-icon></a></li>
+    <li style="--i:5; --clr: #04fc43;"><a href="/habits/list"><ion-icon name="accessibility-outline"></ion-icon></a></li>
+    <li style="--i:6; --clr: #04fc43;"><a href="/game_shablon"><ion-icon name="game-controller-outline"></ion-icon></a></li>
+    <li style="--i:7; --clr: #04fc43;"><a href="/instructions"><ion-icon name="infinite-outline"></ion-icon></a></li>
+</ul>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+    // Select the element with the class 'toggle'
+    let toggle = document.querySelector('.toggle');
+
+    // Select the element with the class 'menu'
+    let menu = document.querySelector('.menu');
+
+    // Select the element with the class 'profile-section'
+    let profileSection = document.querySelector('.profile-section');
+
+    // Define a click event listener for the toggle
+    toggle.onclick = function() {
+        // Toggle the 'active' class on the menu and profile-section elements
+        menu.classList.toggle('active');
+        profileSection.classList.toggle('active');
+    }
+</script>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@5.6.9/dist/ionic/ionic.js"></script>
+
+</body>
+</html>

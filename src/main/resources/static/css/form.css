@@ -1,0 +1,185 @@
+/* Global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: hsl(228, 6%, 8%); /* Темно-серый фон */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white; /* Белый текст */
+}
+
+/* Feedback form styles */
+.feedback-container {
+    z-index: 2;
+    background: rgba(59, 57, 57, 0.4); /* Полупрозрачный черный фон */
+    padding: 50px; /* Увеличенный отступ */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    font-size: 1em; /* Увеличенный размер шрифта */
+    width: 80%;
+    max-width: 700px;
+}
+
+input,
+select {
+    width: 100%;
+    margin-bottom: 20px; /* Увеличенный отступ */
+    padding: 10px; /* Увеличенный внутренний отступ */
+    border-radius: 5px;
+    background: rgba(77, 76, 76, 0.1); /* Полупрозрачный белый фон */
+    color: white;
+    border: none;
+    font-size: 0.9em; /* Уменьшенный размер шрифта */
+}
+
+button {
+    padding: 12px 24px; /* Увеличенный внутренний отступ */
+    border-radius: 5px;
+    border: none;
+    background: #00ff0082;
+    color: white;
+    cursor: pointer;
+    transition: background 0.4s ease;
+    font-size: 0.9em; /* Увеличенный размер шрифта */
+}
+
+button:hover {
+    background: #00cc00;
+}
+
+/* Animation styles */
+.animation-container {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.bubbles {
+    position: absolute;
+    display: flex;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bubbles span {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    background: #00ff00; /* Зеленый цвет */
+    margin: 0 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff0044, 0 0 50px #00ff00, 0 0 100px #00ff00; /* Зеленый цвет с разной прозрачностью */
+    animation: animate 15s linear infinite;
+    animation-duration: calc(125s / var(--i));
+}
+
+.bubbles span:nth-child(even) {
+    background: #c1d71a; /* Светло-зеленый цвет */
+    box-shadow: 0 0 10px #f0ff806f, 0 0 50px #c1d71a, 0 0 100px #c1d71a; /* Светло-зеленый цвет с разной прозрачностью */
+}
+
+@keyframes animate {
+    0% {
+        transform: translateY(100vh) scale(0);
+    }
+    100% {
+        transform: translateY(-10vh) scale(1);
+    }
+}
+
+.popup {
+    position: fixed;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    border: 1px solid #888;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content {
+    margin: 15px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000;
+    border: 1px solid #888;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-content {
+    margin: 15px;
+}
+
+.close {
+    color: #ff0000;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.alert {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 18px; /* Увеличенный размер шрифта */
+}
+
+.alert-success {
+    background-color: transparent;
+    color: #00ff00; /* Ярко-зеленый текст */
+}
+
+.alert-danger {
+    background-color: #4d0000; /* Темно-красный фон */
+    color: #ff0000; /* Ярко-красный текст */
+}

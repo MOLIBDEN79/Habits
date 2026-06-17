@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category List</title>
+    <link rel="stylesheet" href="" th:href="@{/css/admin-panel.css}"> <!-- Подключите ваш файл стилей здесь -->
+</head>
+<body>
+<h1>Category List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.id}"></td>
+        <td th:text="${category.name}"></td>
+        <td th:text="${category.description}"></td>
+        <td>
+            <a th:href="@{'/edit/' + ${category.id}}">Edit</a>
+            <a th:href="@{'/delete/' + ${category.id}}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/add">Add Category</a>
+</body>
+</html>

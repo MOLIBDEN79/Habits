@@ -1,0 +1,219 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0; /* Убираем отступы по умолчанию */
+    background: linear-gradient(to bottom, #000000, #228B22); /* Изначальный градиент */
+}
+/* Добавьте это в ваш CSS-файл */
+
+
+
+
+@media (max-width: 1200px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .container .block {
+        width: 90%; /* Или другой процент или vw единица для отзывчивости */
+    }
+}
+
+@media (max-width: 768px) {
+    .container .block {
+        width: 97%; /* Или другой процент или vw единица для отзывчивости */
+    }
+}
+
+@media (max-width: 480px) {
+    .container .block {
+        width: 100%; /* Или другой процент или vw единица для отзывчивости */
+    }
+}
+
+
+
+.container {
+    position: relative;
+    max-width: 1100px; /* Максимальная ширина контейнера */
+    width: 90%; /* Изменяемая ширина контейнера */
+    align-items: flex-start; /* Выравнивание контейнеров по верхнему краю */
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 150px; /* Отступ сверху */
+}
+
+.container .block {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px; /* Уменьшенная высота контейнера */
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #000;
+    transition: .7s;
+    width: calc(33.33% - 20px); /* Уменьшенная ширина элемента с учетом отступов */
+    margin-bottom: 20px;
+}
+
+/* Для каждого нового контейнера изменяем цвет градиента */
+.container:nth-child(odd) {
+    background: linear-gradient(to bottom, #000000, #228B22, #228B22);
+}
+
+.container:nth-child(even) {
+    background: linear-gradient(to bottom, #228B22, #228B22, #000000);
+}
+
+
+.container .block:hover {
+    transform: translateY(-10px);
+}
+
+.container .block .content {
+    padding: 20px;
+    text-align: center;
+    overflow: hidden; /* Скрытие лишнего текста, если он не помещается */
+}
+
+.container .block .content p {
+    color: #fff;
+    padding: 10px 0;
+    max-width: 300px; /* Установим максимальную ширину текста */
+    overflow: hidden; /* Скрытие лишнего текста, если он не помещается */
+    text-overflow: ellipsis; /* Добавление многоточия, если текст обрезается */
+    white-space: nowrap; /* Запрет переноса текста на новую строку */
+}
+
+/* Стили для кнопки */
+
+.container .block .content .face {
+    width: 80px;
+    border-radius: 50%;
+    background: #33d1a0;
+    padding: 4px;
+}
+.container .block .content h1 {
+    margin-top: 20px;
+    color: #32CD32;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.container .block .content h3 {
+    margin-top: 20px;
+    color: #32CD32;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+/* Добавьте это в ваш CSS-файл */
+
+.done-button, .add-habit-button {
+    text-decoration: none;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #32CD32;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.done-button:hover, .add-habit-button:hover {
+    text-decoration: none;
+    background-color: #32CD32;
+}
+.done-button:active, .add-habit-button:active {
+    background-color: #228B22; /* Новый цвет при нажатии */
+}
+
+
+
+.modal {
+    display: none; /* Скрыть модальное окно по умолчанию */
+    position: fixed; /* Фиксированное позиционирование */
+    z-index: 1; /* Перед остальным контентом */
+    left: 0;
+    top: 0;
+    width: 100%; /* Ширина на весь экран */
+    height: 100%; /* Высота на весь экран */
+    overflow: auto; /* Позволить прокрутку при необходимости */
+    background-color: rgba(0,0,0,0.4); /* Полупрозрачный черный фон */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #696969; /* Черный фон */
+    color: #fff; /* Белый текст */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; /* Уменьшенная ширина модального окна */
+    height: 40%; /* Уменьшенная высота модального окна */
+    border-radius: 30px; /* Круглые углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+input[type=text], textarea {
+    width: 90%; /* Ширина полей ввода */
+    padding: 12px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Круглые углы для полей ввода */
+    box-sizing: border-box;
+    background-color: #A9A9A9; /* Белый фон */
+    color: #000; /* Черный текст */
+}
+
+input[type=submit], button {
+    width: 90%;
+    background-color: #00FF00;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 50px; /* Круглые углы для кнопки /
+cursor: pointer;
+transition: background-color 0.3s ease; / Анимация фона */
+}
+
+input[type=submit]:hover,
+button:hover {
+    background-color: #45a049;
+}
+
+input[type=checkbox] {
+    margin: 20px 0;
+}

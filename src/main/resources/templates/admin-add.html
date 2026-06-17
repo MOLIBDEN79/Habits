@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="" th:href="@{/css/admin-panel.css}">
+</head>
+<body>
+
+<form action="/admin/add" method="post">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <fieldset>
+        <legend>Roles:</legend>
+        <label><input type="checkbox" name="roles" value="ROLE_USER"> User</label>
+        <label><input type="checkbox" name="roles" value="ROLE_ADMIN"> Admin</label>
+        <!-- Добавьте другие роли по мере необходимости -->
+    </fieldset>
+
+    <input type="submit" value="Add User">
+</form>
+
+</body>
+</html>
