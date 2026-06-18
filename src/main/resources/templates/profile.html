@@ -1,320 +1,269 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-    />
-    <title>Profile</title>
-    <link rel="stylesheet" href="/css/profile.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.min.css">
+    <title>CACTU — Профиль</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+        :root {
+            --first-color: hsl(93, 54%, 54%);
+            --first-color-alt: hsl(93, 50%, 48%);
+            --title-color: hsl(228, 8%, 98%);
+            --text-color: hsl(228, 8%, 70%);
+            --body-color: hsl(228, 6%, 8%);
+            --container-color: hsl(228, 6%, 12%);
+            --border-color: hsl(228, 6%, 20%);
+            --body-font: "Montserrat", sans-serif;
+            --gradient-card: linear-gradient(180deg, hsla(93, 8%, 8%, 1), hsla(93, 40%, 30%, 1));
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .wrap { max-width: 960px; margin: 0 auto; }
+
+        .top {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background-color: var(--container-color);
+            color: var(--title-color);
+            font-size: 1.25rem;
+            text-decoration: none;
+            transition: background-color .3s, color .3s;
+        }
+        .back-button:hover { background-color: var(--first-color); color: #000; }
+        .top h2 { color: var(--title-color); font-size: 1.4rem; font-weight: 700; }
+
+        /* ===== Profile header card ===== */
+        .profile-card {
+            background: var(--gradient-card);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .avatar {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--first-color);
+            background-color: var(--container-color);
+        }
+        .profile-info { flex: 1; min-width: 200px; }
+        .profile-info h1 { color: var(--title-color); font-size: 1.6rem; font-weight: 700; }
+        .profile-info .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            background-color: hsla(93, 54%, 54%, .15);
+            color: var(--first-color);
+            border: 1px solid hsla(93, 54%, 54%, .4);
+            padding: .25rem .7rem;
+            border-radius: 999px;
+            font-size: .8rem;
+            font-weight: 600;
+            margin-top: .5rem;
+        }
+        .profile-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            border: none;
+            cursor: pointer;
+            font-family: var(--body-font);
+            font-weight: 600;
+            font-size: .9rem;
+            border-radius: .7rem;
+            padding: .65rem 1.1rem;
+            text-decoration: none;
+            transition: opacity .3s, background-color .3s;
+        }
+        .btn--primary { background-color: var(--first-color); color: #000; }
+        .btn--ghost { background-color: hsl(228, 6%, 16%); color: var(--title-color); border: 1px solid var(--border-color); }
+        .btn:hover { opacity: .88; }
+
+        /* ===== Stats ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat {
+            background-color: var(--container-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            text-align: center;
+        }
+        .stat i { font-size: 1.6rem; color: var(--first-color); }
+        .stat .num { color: var(--title-color); font-size: 1.7rem; font-weight: 700; margin-top: .4rem; }
+        .stat .label { font-size: .85rem; margin-top: .2rem; }
+
+        /* ===== Sections ===== */
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .panel {
+            background-color: var(--container-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+        .panel h3 {
+            color: var(--title-color);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .panel h3 i { color: var(--first-color); }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: .7rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: .92rem;
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-row span:first-child { color: var(--text-color); }
+        .info-row span:last-child { color: var(--title-color); font-weight: 600; }
+
+        .habit-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+        .habit-tag {
+            background-color: hsl(228, 6%, 16%);
+            border: 1px solid var(--border-color);
+            color: var(--title-color);
+            padding: .4rem .8rem;
+            border-radius: 999px;
+            font-size: .85rem;
+        }
+        .habit-tag i { color: var(--first-color); margin-right: .3rem; }
+
+        @media screen and (max-width: 768px) {
+            .columns { grid-template-columns: 1fr; }
+            .profile-card { flex-direction: column; text-align: center; }
+            .profile-actions { justify-content: center; }
+        }
+    </style>
 </head>
 <body>
 
-<a href="javascript:history.back()" class="back-button2"><i class="fas fa-arrow-left"></i></a>
+<div class="wrap">
+    <div class="top">
+        <a href="/" class="back-button"><i class="ri-arrow-left-line"></i></a>
+        <h2>Мой профиль</h2>
+    </div>
 
-<div class="wrapper">
-    <div class="cover cover-left"></div>
-    <div class="cover cover-right"></div>
-
-    <div class="book">
-        <!-- profile page -->
-        <div class="book-page page-left">
-            <div class="profile-page">
-                <img src="/img/ava.png" alt="">
-                <h1  th:text="${currentUser.username}"></h1>
-
-                <p>  Я
-
-                   ЛОХ </p>
-
-                <div class="btn-box">
-                    <form action="/logout" method="post">
-                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                        <button type="submit" class="btn">Выйти из аккаунта</button>
-                    </form>
-                    <a href="#" class="btn contact-me">В конце</a>
-                </div>
-
-            </div>
+    <!-- Profile header -->
+    <div class="profile-card">
+        <img th:src="${userProfile != null and userProfile.avatarPath != null ? userProfile.avatarPath : '/img/ava.png'}"
+             src="/img/ava.png" alt="Аватар" class="avatar">
+        <div class="profile-info">
+            <h1 th:text="${userProfile != null and userProfile.nickname != null and !userProfile.nickname.isBlank() ? userProfile.nickname : currentUser.username}">Игрок</h1>
+            <span class="badge"><i class="ri-cactus-line"></i> Уровень <span th:text="${level}">1</span> · Садовод CACTU</span>
         </div>
-        <!-- page 1 & 2 -->
-        <div class="book-page page-right turn" id="turn-1">
-            <!-- page 1 (work experience) -->
-            <div class="page-front">
-                <h1 class="title">О себе</h1>
-
-                <div class="workeduc-box">
-                    <div class="workeduc-content">
-                        <span class="year"><i class='bx bx-party'></i>--------------</span>
-                        <h3>День рождения</h3>
-                        <p>2004-03-17?</p>
-                    </div>
-                    <div class="workeduc-content">
-                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
-                        <h3>Возраст</h3>
-                        <p>20</p>
-                    </div>
-                    <div class="workeduc-content">
-                        <span class="year"><i class='bx bxl-jsfiddle'></i>--------------</span>
-                        <h3>Моя страна</h3>
-                        <p>Казахстан</p>
-                    </div>
-                    <div class="workeduc-content">
-                        <span class="year"><i class='bx bx-universal-access'></i>--------------</span>
-                        <h3>Рост</h3>
-                        <p>200</p>
-                    </div>
-                </div>
-                <span class="number-page">1</span>
-                <!-- next button -->
-                <span class="nextprev-btn" data-page="turn-1">
-                                <i class='bx bx-chevron-right'></i>
-                            </span>
-            </div>
-
-            <!-- page 2 (education) -->
-            <div  class="page-back">
-                <h1 class="title">Интересы</h1>
-                <div class="workeduc-box">
-                    <div class="workeduc-content">
-                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
-                        <h3>Образование</h3>
-                        <p>школьник студент</p>
-                    </div>
-                    <div class="workeduc-content">
-                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
-                        <h3>Увлечения</h3>
-                        <p>Преследование кого-то</p>
-                    </div>
-                    <div class="workeduc-content">
-                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
-                        <h3>Профессиональные интересы</h3>
-                        <p>GPT разрабодчик ?</p>
-                    </div>
-                    <div class="workeduc-content">
-                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
-                        <h3>Личные успехи</h3>
-                        <p>Сплю много</p>
-                    </div>
-                    <div class="workeduc-content">
-                        <span class="year"><i class='bx bxs-calendar'></i>--------------</span>
-                        <h3>Цель</h3>
-                        <p>Дисциплина </p>
-                    </div>
-                </div>
-                <span class="number-page">2</span>
-                <!-- prev button -->
-                <span class="nextprev-btn back" data-page="turn-1">
-                                <i class='bx bx-chevron-left'></i>
-                            </span>
-            </div>
-        </div>
-        <!-- page 3 & 4 -->
-        <div class="book-page page-right turn" id="turn-2">
-            <!-- page 3 (my serices) -->
-            <div class="page-front">
-                <h1 class="title">Уровень</h1>
-                <div class="services-box">
-
-                    <div class="services-content">
-                        <i class='bx bx-bar-chart-alt'></i>
-                        <h3>пример 1</h3>
-                        <img src="/img/fon/1.png" alt="">
-                        <a href="/start" class="btn">Start</a>
-                    </div>
-                </div>
-                <span class="number-page">3</span>
-                <!-- next button -->
-                <span class="nextprev-btn" data-page="turn-2">
-                                <i class='bx bx-chevron-right'></i>
-                            </span>
-            </div>
-            <!-- page 4 (my skills) -->
-            <div class="page-back">
-                <h1 class="title">Прывычки</h1>
-                <div class="skills-box">
-                    <div class="skills-content">Здоровый образ жизни
-                        <div class="content">
-                            <span>Спорт</span>
-                            <span> ХОЧУ </span>
-                            <span>Физкультура</span>
-                            <span>Зарядка</span>
-                            <span>Йога</span>
-                        </div>
-                    </div>
-                    <div class="skills-content">Развития
-                        <div class="content">
-                            <span>Англиский</span>
-                            <span>География</span>
-                            <span>Рисования</span>
-                            <span>Яой мага</span>
-
-                        </div>
-                    </div>
-                </div>
-                <span class="number-page">4</span>
-                <!-- prev button -->
-                <span class="nextprev-btn back" data-page="turn-2">
-                                <i class='bx bx-chevron-left'></i>
-                            </span>
-            </div>
-        </div>
-        <!-- page 5 & 6 -->
-        <div class="book-page page-right turn" id="turn-3">
-            <!-- page 5 (Lates project or my portfolio) -->
-            <div class="page-front">
-                <h1 class="title">Цитаты</h1>
-
-                <div class="portfolio-box">
-                    <div class="img-box">
-                        <img src="/img/5959.png" alt="">
-                    </div>
-                    <div class="info-box">
-                        <div class="info-title">
-                            <h3>Послушай, дорогой друг</h3>
-
-                        </div>
-                        <p>Лучше спереди на 5 см, чем сзади</p>
-                    </div>
-                    <div class="btn-box">
-                        <button class="btn" id="openModalButton">Изменить</button>
-                        <a class="btn" th:if="${isAdmin}" th:href="@{/admin}" >Admin Panel</a>
-
-
-                    </div>
-                </div>
-                <span class="number-page">5</span>
-                <!-- back profile button -->
-                <a href="#" class="back-profile">
-                    <p>Profile</p>
-                    <i class='bx bxs-user'></i>
-                </a>
-            </div>
-            <!-- page 6  -->
+        <div class="profile-actions">
+            <a th:if="${isAdmin}" th:href="@{/admin}" class="btn btn--ghost">
+                <i class="ri-shield-star-line"></i> Админ-панель
+            </a>
+            <form th:action="@{/logout}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <button type="submit" class="btn btn--primary">
+                    <i class="ri-logout-box-line"></i> Выйти
+                </button>
+            </form>
         </div>
     </div>
 
-</div>
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <i class="ri-drop-line"></i>
+            <div class="num" th:text="${water}">0</div>
+            <div class="label">Вода 💧</div>
+        </div>
+        <div class="stat">
+            <i class="ri-fire-line"></i>
+            <div class="num" th:text="${streak}">0</div>
+            <div class="label">Серия дней</div>
+        </div>
+        <div class="stat">
+            <i class="ri-plant-line"></i>
+            <div class="num"><span th:text="${level}">1</span><span style="font-size:1rem;color:var(--text-color)" th:text="'/' + ${levelMax}">/10</span></div>
+            <div class="label">Уровень кактуса</div>
+        </div>
+        <div class="stat">
+            <i class="ri-list-check-2"></i>
+            <div class="num" th:text="${habitsCount}">0</div>
+            <div class="label">Привычек</div>
+        </div>
+    </div>
 
+    <!-- Details -->
+    <div class="columns">
+        <div class="panel">
+            <h3><i class="ri-user-line"></i> О себе</h3>
+            <div class="info-row"><span>Имя пользователя</span><span th:text="${currentUser.username}">—</span></div>
+            <div class="info-row" th:if="${userProfile != null and userProfile.goal != null and !userProfile.goal.isBlank()}">
+                <span>Цель</span><span th:text="${userProfile.goal}">Дисциплина</span>
+            </div>
+            <div class="info-row" th:if="${userProfile != null and userProfile.country != null and !userProfile.country.isBlank()}">
+                <span>Регион</span><span th:text="${userProfile.country}">—</span>
+            </div>
+            <div class="info-row" th:if="${userProfile != null and userProfile.aboutMe != null and !userProfile.aboutMe.isBlank()}">
+                <span>О себе</span><span th:text="${userProfile.aboutMe}">—</span>
+            </div>
+            <div class="info-row" th:if="${userProfile == null}">
+                <span>Профиль</span><span>Заполни на странице редактирования</span>
+            </div>
+        </div>
 
-<div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h1 class="form-title">Изменить</h1>
-        <form id="registrationForm" action="#" method="post" enctype="multipart/form-data">
-            <div class="main-user-info">
-                <!-- Avatar Upload -->
-                <div class="user-input-box">
-                    <label for="avatar">Аватарка</label>
-                    <input type="file" id="avatar" name="avatar" accept="image/*"/>
-                </div>
-                <!-- Additional user info -->
-                <div class="user-input-box">
-                    <label for="nickname">Nickname</label>
-                    <input type="text" id="nickname" name="nickname" placeholder="Enter Nickname"/>
-                </div>
-                <div class="user-input-box">
-                    <label for="birthDate">Дата рождения</label>
-                    <input type="date" id="birthDate" name="birthDate"/>
-                </div>
-                <div class="user-input-box">
-                    <label for="age">Возраст</label>
-                    <input type="number" id="age" name="age" placeholder="Enter Age"/>
-                </div>
-                <!-- Social Networks -->
-                <div class="user-input-box">
-                    <label for="height">Рост</label>
-                    <input type="number" id="height" name="height" placeholder="Enter Height"/>
-                </div>
-                <!-- Country -->
-                <!-- Country Select -->
-                <div class="user-input-box">
-                    <label for="countrySelect">Страна</label>
-                    <select id="countrySelect" name="country">
-                        <option value="kazakhstan">Казахстан</option>
-                        <option value="russia">Россия</option>
-                        <option value="ukraine">Украина</option>
-                        <option value="belarus">Беларусь</option>
-                        <option value="uzbekistan">Узбекистан</option>
-                        <option value="latvia">Латвия</option>
-                        <option value="kyrgyzstan">Кыргызстан</option>
-                        <option value="tajikistan">Таджикистан</option>
-                        <option value="estonia">Эстония</option>
-                        <option value="turkmenistan">Туркменистан</option>
-                        <option value="armenia">Армения</option>
-                        <option value="georgia">Грузия</option>
-                        <option value="azerbaijan">Азербайджан</option>
-                        <option value="moldova">Молдова</option>
-                        <option value="lithuania">Литва</option>
-                        <option value="israel">Израиль</option>
-                        <option value="germany">Германия</option>
-                        <option value="united-states">Соединенные Штаты Америки</option>
-                        <option value="canada">Канада</option>
-                        <!-- Add more countries as needed -->
-                    </select>
-                </div>
-                <!-- Education -->
-                <div class="user-input-box">
-                    <label for="education"> Краткая информация о себе</label>
-                    <input type="text" id="education" name="education" placeholder="Enter Education"/>
-                </div>
-                <!-- Hobbies -->
-                <div class="user-input-box">
-                    <label for="hobbies">Увлечения</label>
-                    <textarea id="hobbies" name="hobbies" placeholder="Enter Hobbies"></textarea>
-                </div>
-                <!-- Professional Interests -->
-                <div class="user-input-box">
-                    <label for="professionalInterests">Профессиональные интересы</label>
-                    <textarea id="professionalInterests" name="professionalInterests" placeholder="Enter Professional Interests"></textarea>
-                </div>
-                <!-- Personal Data -->
-                <div class="user-input-box">
-                    <label for="personalData">Личные успехи</label>
-                    <textarea id="personalData" name="personalData" placeholder="Enter Personal Data"></textarea>
-                </div>
-                <!-- Goals -->
-                <div class="user-input-box">
-                    <label for="goals">Цели</label>
-                    <textarea id="goals" name="goals" placeholder="Enter Goals"></textarea>
-                </div>
-                <!-- Quote -->
-                <div class="user-input-box">
-                    <label for="quote">Любимая Цитата</label>
-                    <textarea id="quote" name="quote" placeholder="Enter Favorite Quote"></textarea>
-                </div>
-                <!-- Gender Details -->
-                <div class="gender-details-box">
-                    <span class="gender-title"></span>
-                    <div class="gender-category">
-                        <input type="radio" name="userCategory" id="schoolStudent" value="schoolStudent">
-                        <label for="schoolStudent">Школьник</label>
-                        <input type="radio" name="userCategory" id="universityStudent" value="universityStudent">
-                        <label for="universityStudent">Студент</label>
-                        <input type="radio" name="userCategory" id="other" value="other">
-                        <label for="other">Другое</label>
-                    </div>
-                </div>
+        <div class="panel">
+            <h3><i class="ri-seedling-line"></i> Мои привычки</h3>
+            <div class="habit-tags" th:if="${habitNames != null and !habitNames.isEmpty()}">
+                <span class="habit-tag" th:each="name : ${habitNames}">
+                    <i class="ri-checkbox-circle-line"></i><span th:text="${name}">Привычка</span>
+                </span>
             </div>
-            <div class="form-submit-btn">
-                <input type="submit" value="Сохранить">
+            <p th:if="${habitNames == null or habitNames.isEmpty()}" style="color:var(--text-color);font-size:.92rem;">
+                Пока нет ни одной привычки. Посади первое «семя» — и начни поливать кактус.
+            </p>
+            <div style="margin-top: 1.25rem;">
+                <a href="/start" class="btn btn--ghost"><i class="ri-add-line"></i> Управлять привычками</a>
             </div>
-        </form>
+        </div>
     </div>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-<script src="/js/profile.js"></script>
 
 </body>
-
 </html>

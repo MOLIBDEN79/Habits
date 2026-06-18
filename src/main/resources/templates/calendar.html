@@ -1,98 +1,412 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="/css/calendar.css"/>
-    <title>Calendar</title>
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.min.css">
+    <title>CACTU — Календарь привычек</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
+
+        :root {
+            --first-color: hsl(93, 54%, 54%);
+            --first-color-alt: hsl(93, 50%, 48%);
+            --title-color: hsl(228, 8%, 98%);
+            --text-color: hsl(228, 8%, 70%);
+            --body-color: hsl(228, 6%, 8%);
+            --container-color: hsl(228, 6%, 12%);
+            --border-color: hsl(228, 6%, 20%);
+            --body-font: "Montserrat", sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--body-font);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1.5rem 3rem;
+        }
+
+        .page-head {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--container-color);
+            color: var(--title-color);
+            font-size: 1.25rem;
+            transition: background-color .3s;
+            text-decoration: none;
+        }
+        .back-button:hover { background-color: var(--first-color); color: #000; }
+
+        .page-head__text h1 {
+            color: var(--title-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .page-head__text h1 i { color: var(--first-color); }
+        .page-head__text p { font-size: .9rem; margin-top: .15rem; }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1000px;
+            background-color: var(--container-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* ===== LEFT: calendar grid ===== */
+        .left { padding: 1.75rem; }
+
+        .month {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+        .month .date {
+            color: var(--title-color);
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+        .month i {
+            cursor: pointer;
+            width: 38px; height: 38px;
+            display: inline-flex;
+            align-items: center; justify-content: center;
+            border-radius: 50%;
+            color: var(--title-color);
+            background-color: hsl(228, 6%, 16%);
+            transition: background-color .3s, color .3s;
+        }
+        .month i:hover { background-color: var(--first-color); color: #000; }
+
+        .weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            margin-bottom: .5rem;
+        }
+        .weekdays div {
+            text-align: center;
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--text-color);
+            padding: .4rem 0;
+        }
+
+        .days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+        }
+        .day {
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            border-radius: .6rem;
+            cursor: pointer;
+            color: var(--title-color);
+            transition: background-color .2s, color .2s;
+            position: relative;
+        }
+        .day:hover { background-color: hsl(228, 6%, 18%); }
+        .prev-date, .next-date { color: hsl(228, 6%, 35%); }
+        .day.today {
+            border: 1px solid var(--first-color);
+        }
+        .day.active {
+            background-color: var(--first-color);
+            color: #000;
+            font-weight: 600;
+        }
+        .day.event::after {
+            content: "";
+            position: absolute;
+            bottom: 6px;
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background-color: var(--first-color);
+        }
+        .day.active.event::after { background-color: #000; }
+
+        .goto-today {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .goto { display: flex; gap: .5rem; }
+        .date-input {
+            background-color: hsl(228, 6%, 16%);
+            border: 1px solid var(--border-color);
+            color: var(--title-color);
+            border-radius: .6rem;
+            padding: .55rem .75rem;
+            outline: none;
+            width: 120px;
+            font-family: var(--body-font);
+        }
+        .date-input::placeholder { color: hsl(228, 6%, 45%); }
+        .goto-btn, .today-btn {
+            border: none;
+            cursor: pointer;
+            border-radius: .6rem;
+            padding: .55rem 1.1rem;
+            font-family: var(--body-font);
+            font-weight: 600;
+            transition: opacity .3s;
+        }
+        .goto-btn { background-color: hsl(228, 6%, 16%); color: var(--title-color); border: 1px solid var(--border-color); }
+        .today-btn { background-color: var(--first-color); color: #000; }
+        .goto-btn:hover, .today-btn:hover { opacity: .85; }
+
+        /* ===== RIGHT: events panel ===== */
+        .right {
+            padding: 1.75rem;
+            background-color: hsl(228, 6%, 10%);
+            border-left: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+        .today-date {
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .event-day { color: var(--first-color); font-size: 1.1rem; font-weight: 700; text-transform: capitalize; }
+        .event-date { color: var(--text-color); font-size: .9rem; margin-top: .15rem; }
+
+        .events {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: .65rem;
+            overflow-y: auto;
+            max-height: 320px;
+        }
+        .events .event {
+            background-color: var(--container-color);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--first-color);
+            border-radius: .6rem;
+            padding: .7rem .85rem;
+            cursor: pointer;
+            transition: border-color .2s;
+        }
+        .events .event:hover { border-color: var(--first-color); }
+        .events .event .title { display: flex; align-items: center; gap: .5rem; }
+        .events .event .title i { color: var(--first-color); font-size: .5rem; }
+        .events .event .event-title { color: var(--title-color); font-size: .9rem; font-weight: 600; }
+        .events .event .event-time { color: var(--text-color); font-size: .8rem; margin-top: .25rem; display: block; }
+        .no-event {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            min-height: 160px;
+            color: hsl(228, 6%, 40%);
+            text-align: center;
+        }
+        .no-event h3 { color: hsl(228, 6%, 45%); font-weight: 600; font-size: .95rem; }
+
+        /* ===== Add-habit form (floating) ===== */
+        .add-event {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--first-color);
+            color: #000;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px hsla(93,54%,54%,.35);
+            transition: transform .25s;
+        }
+        .add-event:hover { transform: scale(1.08); }
+
+        .add-event-wrapper {
+            position: absolute;
+            right: 1.5rem;
+            bottom: 5.25rem;
+            width: 300px;
+            max-width: calc(100% - 3rem);
+            background-color: var(--container-color);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            overflow: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(10px);
+            transition: opacity .25s, transform .25s;
+            z-index: 5;
+        }
+        .add-event-wrapper.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+        .add-event-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: .9rem 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .add-event-header .title { color: var(--title-color); font-weight: 600; }
+        .add-event-header .close { cursor: pointer; color: var(--text-color); transition: color .2s; }
+        .add-event-header .close:hover { color: var(--first-color); }
+
+        .add-event-body { padding: 1rem; display: flex; flex-direction: column; gap: .75rem; }
+        .add-event-input input {
+            width: 100%;
+            background-color: hsl(228, 6%, 16%);
+            border: 1px solid var(--border-color);
+            color: var(--title-color);
+            border-radius: .6rem;
+            padding: .6rem .75rem;
+            outline: none;
+            font-family: var(--body-font);
+        }
+        .add-event-input input::placeholder { color: hsl(228, 6%, 45%); }
+        .add-event-footer { padding: 0 1rem 1rem; }
+        .add-event-btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            background-color: var(--first-color);
+            color: #000;
+            font-weight: 600;
+            font-family: var(--body-font);
+            border-radius: .6rem;
+            padding: .65rem;
+            transition: opacity .3s;
+        }
+        .add-event-btn:hover { opacity: .85; }
+
+        label { display: block; }
+
+        @media screen and (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            .right { border-left: none; border-top: 1px solid var(--border-color); }
+        }
+    </style>
 </head>
 <body>
 
+<div class="page-head">
+    <a href="/" class="back-button"><i class="ri-arrow-left-line"></i></a>
+    <div class="page-head__text">
+        <h1><i class="ri-calendar-check-line"></i> Календарь привычек</h1>
+        <p>Отмечай дни, когда полил кактус — следи за своей серией</p>
+    </div>
+</div>
+
 <div class="container">
-    <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i></a>
     <div class="left">
         <div class="calendar">
             <div class="month">
-                <i class="fas fa-angle-left prev"></i>
-                <div class="date">december 2015</div>
-                <i class="fas fa-angle-right next"></i>
+                <i class="ri-arrow-left-s-line prev"></i>
+                <div class="date">Месяц 2025</div>
+                <i class="ri-arrow-right-s-line next"></i>
             </div>
             <div class="weekdays">
-                <div>Вс</div> <!-- Воскресенье -->
-                <div>Пн</div> <!-- Понедельник -->
-                <div>Вт</div> <!-- Вторник -->
-                <div>Ср</div> <!-- Среда -->
-                <div>Чт</div> <!-- Четверг -->
-                <div>Пт</div> <!-- Пятница -->
-                <div>Сб</div> <!-- Суббота -->
+                <div>Вс</div>
+                <div>Пн</div>
+                <div>Вт</div>
+                <div>Ср</div>
+                <div>Чт</div>
+                <div>Пт</div>
+                <div>Сб</div>
             </div>
             <div class="days"></div>
             <div class="goto-today">
                 <div class="goto">
                     <label>
-                        <input type="text" placeholder="дд/гггг" class="date-input" />
+                        <input type="text" placeholder="мм/гггг" class="date-input" />
                     </label>
-                    <button class="goto-btn">Go</button>
+                    <button class="goto-btn">Перейти</button>
                 </div>
                 <button class="today-btn">Сегодня</button>
             </div>
         </div>
     </div>
+
     <div class="right">
         <div class="today-date">
-            <div class="event-day">wed</div>
-            <div class="event-date">12th december 2022</div>
+            <div class="event-day">—</div>
+            <div class="event-date">Выбери день</div>
         </div>
         <div class="events"></div>
+
         <div class="add-event-wrapper">
             <div class="add-event-header">
-                <div class="title">Добавить Событие</div>
-                <i class="fas fa-times close"></i>
+                <div class="title">Отметить привычку</div>
+                <i class="ri-close-line close"></i>
             </div>
             <form class="add-event-form">
                 <div class="add-event-body">
                     <div class="add-event-input">
                         <label>
-                            <input type="text" placeholder="Название События" class="event-name"/>
+                            <input type="text" placeholder="Какую привычку выполнил?" class="event-name"/>
                         </label>
                     </div>
                     <div class="add-event-input">
                         <label>
-                            <input
-                                    type="text"
-                                    placeholder="Время Начала"
-                                    class="event-time-from"
-                            />
+                            <input type="text" placeholder="С какого времени (чч:мм)" class="event-time-from"/>
                         </label>
                     </div>
                     <div class="add-event-input">
                         <label>
-                            <input
-                                    type="text"
-                                    placeholder="Время Окончания"
-                                    class="event-time-to"
-                            />
+                            <input type="text" placeholder="До какого времени (чч:мм)" class="event-time-to"/>
                         </label>
                     </div>
                 </div>
-            <div class="add-event-footer">
-                <button class="add-event-btn">Добавить Событие</button>
-             </div>
+                <div class="add-event-footer">
+                    <button class="add-event-btn">Добавить отметку</button>
+                </div>
             </form>
         </div>
     </div>
+
     <button class="add-event">
-        <i class="fas fa-plus"></i>
+        <i class="ri-add-line"></i>
     </button>
 </div>
+
 <script src="/js/calendar.js"></script>
 </body>
 </html>

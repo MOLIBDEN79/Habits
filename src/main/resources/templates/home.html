@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--=============== FAVICON ===============-->
-    <link rel="shortcut icon" href="../img/favicon.png" type="image/x-icon">
-
-    <!--=============== REMIXICONS ===============-->
+    <link rel="shortcut icon" href="/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.min.css">
-
-    <!--=============== CSS ===============-->
-    <link rel="stylesheet" href="../css/styles.css">
-
-    <title>Cactu</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>CACTU — Трекер привычек</title>
 </head>
 <body>
+
 <!--==================== HEADER ====================-->
 <header class="header" id="header">
     <nav class="nav container">
         <a href="/" class="nav__logo">
-            <i class="ri-cactus-line"></i> Cactu
+            <i class="ri-cactus-line"></i> CACTU
         </a>
 
         <div class="nav__menu" id="nav-menu">
@@ -28,31 +22,22 @@
                 <li class="nav__item">
                     <a href="#home" class="nav__link active-link">Главная</a>
                 </li>
-
                 <li class="nav__item">
-                    <a href="#new" class="nav__link">Развитие</a>
+                    <a href="#new" class="nav__link">Уровни</a>
                 </li>
-
                 <li class="nav__item">
-                    <a href="#shop" class="nav__link">Магазин</a>
+                    <a href="#shop" class="nav__link">Скины</a>
                 </li>
-
                 <li class="nav__item">
-                    <a href="#care" class="nav__link">Забота</a>
+                    <a href="#care" class="nav__link">Советы</a>
                 </li>
-
                 <li class="nav__item">
-                    <a href="#contact" class="nav__link">Контакт</a>
+                    <a href="#contact" class="nav__link">Контакты</a>
                 </li>
-
                 <li class="nav__item">
                     <a href="/calendar" class="nav__link">Календарь</a>
                 </li>
             </ul>
-
-            <!-- Close button -->
-
-            <!-- Close button -->
             <div class="nav__close" id="nav-close">
                 <i class="ri-close-line"></i>
             </div>
@@ -64,83 +49,78 @@
             </a>
         </div>
 
-        <form th:action="@{/logout}" method="post">
-            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
-            <button type="submit" class="nav__actions" style="background: none; border: none;">
-                <i class="ri-logout-box-line" aria-hidden="true"></i>
+        <form th:action="@{/logout}" method="post" style="display:inline;">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <button type="submit" style="background: none; border: none; cursor: pointer; color: inherit;">
+                <i class="ri-logout-box-line" style="font-size: 1.25rem;"></i>
             </button>
         </form>
 
-
-        <!-- Toggle button -->
         <div class="nav__toggle" id="nav-toggle">
             <i class="ri-menu-line"></i>
         </div>
-
     </nav>
 </header>
+
 <!--==================== MAIN ====================-->
 <main class="main">
+
     <!--==================== HOME ====================-->
     <section class="home section" id="home">
         <div class="home__container container grid">
-            <img src="../img/home-cactus.png" alt="image" class="home__img">
+            <img src="/img/home-cactus.png" alt="CACTU персонаж" class="home__img">
 
             <div class="home__data">
                 <h1 class="home__title">
-                    ТВОЙ <br>
-                    <span>CACTU</span> ЖДЁТ <br>
-                    ТЕБЯ! <br>
+                    СТРОЙ <br>
+                    <span>ПРИВЫЧКИ</span> — <br>
+                    РАСТИ КАКТУС <br>
                 </h1>
 
                 <p class="home__description">
-                    Вы сами создаёте себя и совершенствуетесь вместе с <b>CACTU</b>
+                    Выполняй привычки каждый день, получай воду
+                    и поливай своего <b>CACTU</b>. Чем лучше твои привычки — тем сильнее растёт кактус!
                 </p>
 
                 <div class="home__buttons">
                     <a href="/start" class="button">
-                        <span>
-                           <i class="ri-arrow-right-line"></i>
-                        </span>
-
+                        <span><i class="ri-arrow-right-line"></i></span>
                         НАЧАТЬ
-                    </a>0
-
-                    <a href="/instructions" class="button__link">ПОДРОБНЕЕ...</a>
+                    </a>
+                    <a href="/instructions" class="button__link">КАК ЭТО РАБОТАЕТ...</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!--==================== NEWS ====================-->
+    <!--==================== LEVELS ====================-->
     <section class="new section" id="new">
         <div class="new__container container grid">
             <div class="new__data">
                 <h2 class="section__title">
-                    РАЗВИТИЕ ТВОЕГО  <br> ПЕРСОНАЖА
+                    КАК РАСТЁТ <br> ТВОЙ CACTU
                 </h2>
 
                 <p class="new__description">
-                    Развивайте своего CACTU для усовершенствование себя
-                    и не забывайте про него !
-                    CACTU - Вы!
+                    Каждый день, когда ты выполняешь привычку, кактус получает воду.
+                    Поддерживай серию дней — и наблюдай, как он расцветает!
                 </p>
             </div>
 
             <div class="new__content grid">
                 <article class="new__card">
-                    <img src="../img/new-cactus-1.png" alt="image" class="new__img">
-                    <h2 class="new__title">Gymnocalycium Cactus</h2>
+                    <img src="/img/new-cactus-1.png" alt="Росток" class="new__img">
+                    <h2 class="new__title">Росток — 1–7 дней</h2>
                 </article>
 
                 <article class="new__card">
-                    <img src="../img/new-cactus-2.png" alt="image" class="new__img">
-                    <h2 class="new__title">Lily Pad Succulent</h2>
+                    <img src="/img/new-cactus-2.png" alt="Кактус" class="new__img">
+                    <h2 class="new__title">Кактус — 8–30 дней</h2>
                 </article>
 
                 <article class="new__card">
-                    <img src="../img/new-cactus-3.png" alt="image" class="new__img">
-                    <h2 class="new__title">Rebutia Cactus</h2>
+                    <img src="/img/new-cactus-3.png" alt="В цвету" class="new__img">
+                    <h2 class="new__title">В цвету — 30+ дней</h2>
                 </article>
             </div>
         </div>
@@ -149,115 +129,76 @@
     <!--==================== SHOP ====================-->
     <section class="shop section" id="shop">
         <h2 class="section__title">
-            СКИНЫ ДЛЯ CACTU
+            ОБЛИКИ ДЛЯ ТВОЕГО CACTU
         </h2>
 
         <div class="shop__container container grid">
             <article class="shop__card">
-                <img src="../img/shop-cactus-1.png" alt="image" class="shop__img">
-
-                <h3 class="shop__title">Gymnocalycium <br> Cactus</h3>
-                <span class="shop__price">$15</span>
-
-                <button class="shop__button">
-                    <i class="ri-shopping-bag-line"></i>
-                </button>
+                <img src="/img/shop-cactus-1.png" alt="облик 1" class="shop__img">
+                <h3 class="shop__title">Пустынный <br> странник</h3>
+                <span class="shop__price">15 💧</span>
+                <button class="shop__button"><i class="ri-shopping-bag-line"></i></button>
             </article>
 
             <article class="shop__card">
-                <img src="../img/shop-cactus-2.png" alt="image" class="shop__img">
-
-                <h3 class="shop__title">Echeveria <br> Succulent</h3>
-                <span class="shop__price">$10</span>
-
-                <button class="shop__button">
-                    <i class="ri-shopping-bag-line"></i>
-                </button>
+                <img src="/img/shop-cactus-2.png" alt="облик 2" class="shop__img">
+                <h3 class="shop__title">Лесной <br> дух</h3>
+                <span class="shop__price">10 💧</span>
+                <button class="shop__button"><i class="ri-shopping-bag-line"></i></button>
             </article>
 
             <article class="shop__card">
-                <img src="../img/shop-cactus-3.png" alt="image" class="shop__img">
-
-                <h3 class="shop__title">Ferocactus <br> Cactus</h3>
-                <span class="shop__price">$15</span>
-
-                <button class="shop__button">
-                    <i class="ri-shopping-bag-line"></i>
-                </button>
+                <img src="/img/shop-cactus-3.png" alt="облик 3" class="shop__img">
+                <h3 class="shop__title">Снежный <br> кактус</h3>
+                <span class="shop__price">15 💧</span>
+                <button class="shop__button"><i class="ri-shopping-bag-line"></i></button>
             </article>
 
             <article class="shop__card">
-                <img src="../img/shop-cactus-4.png" alt="image" class="shop__img">
-
-                <h3 class="shop__title">Key Lime Pie <br> Succulent</h3>
-                <span class="shop__price">$10</span>
-
-                <button class="shop__button">
-                    <i class="ri-shopping-bag-line"></i>
-                </button>
+                <img src="/img/shop-cactus-4.png" alt="облик 4" class="shop__img">
+                <h3 class="shop__title">Цветущий <br> кактус</h3>
+                <span class="shop__price">10 💧</span>
+                <button class="shop__button"><i class="ri-shopping-bag-line"></i></button>
             </article>
 
             <article class="shop__card">
-                <img src="../img/shop-cactus-5.png" alt="image" class="shop__img">
-
-                <h3 class="shop__title">Melocactus <br> Cactus</h3>
-                <span class="shop__price">$15</span>
-
-                <button class="shop__button">
-                    <i class="ri-shopping-bag-line"></i>
-                </button>
+                <img src="/img/shop-cactus-5.png" alt="облик 5" class="shop__img">
+                <h3 class="shop__title">Золотой <br> кактус</h3>
+                <span class="shop__price">20 💧</span>
+                <button class="shop__button"><i class="ri-shopping-bag-line"></i></button>
             </article>
         </div>
     </section>
 
-    <!--==================== CARE ====================-->
+    <!--==================== TIPS ====================-->
     <section class="care section" id="care">
         <h2 class="section__title">
-            ЗАБОТА И ЗДОРОВЬЕ ДЛЯ <br> ВАШЕГО CACTU
+            КАК УХАЖИВАТЬ <br> ЗА CACTU
         </h2>
 
         <div class="care__container container grid">
-            <img src="../img/care-cactus.png" alt="image" class="care__img">
+            <img src="/img/care-cactus.png" alt="советы" class="care__img">
 
             <ul class="care__list">
                 <li class="care__item">
                     <i class="ri-checkbox-fill"></i>
-                    <p>
-                        Часто поливайте его водой
-                        ведь это ваш водный трекер
-                    </p>
+                    <p>Отмечай привычки каждый день — кактус получает воду только от регулярности</p>
                 </li>
-
                 <li class="care__item">
                     <i class="ri-checkbox-fill"></i>
-                    <p>
-                        Обеспечьте хороший фокус
-                        чтобы CACTU мог расти
-                    </p>
+                    <p>Не пропускай серию — пропущенный день не засчитывается и растение жаждет</p>
                 </li>
-
                 <li class="care__item">
                     <i class="ri-checkbox-fill"></i>
-                    <p>
-                        Поместите себя в неудобные условия
-                        пробуйте разное, CACTU может стать скучно
-                    </p>
+                    <p>Добавляй новые привычки постепенно — лучше одна стабильная, чем десять брошенных</p>
                 </li>
-
                 <li class="care__item">
                     <i class="ri-checkbox-fill"></i>
-                    <p>
-                        Не поливайте больше, чем необходимо, держите баланс
-                        накопится слишком много воды, и CACTU сгниет
-                    </p>
+                    <p>Накапливай воду 💧 и трать её на новые облики для своего CACTU</p>
                 </li>
-
                 <li class="care__item">
                     <i class="ri-checkbox-fill"></i>
-                    <p>
-                        Не подвергайте воздействию высоких нагрузок
-                        CACTU не любит экстрим. Выгорит
-                    </p>
+                    <p>Следи за календарём — он покажет, где ты был молодцом, а где сорвался</p>
                 </li>
             </ul>
         </div>
@@ -266,25 +207,16 @@
     <!--==================== CONTACT ====================-->
     <section class="contact section" id="contact">
         <h2 class="section__title">
-            ВАМ НУЖНЫ НАШИ КОНТАКТЫ ? <br> СВЯЖИТЕСЬ С НАМИ
+            ЕСТЬ ВОПРОСЫ? <br> СВЯЖИТЕСЬ С НАМИ
         </h2>
 
         <div class="contact__container container grid">
-            <img src="../img/contact-cactus.png" alt="image" class="contact__img">
+            <img src="/img/contact-cactus.png" alt="контакт" class="contact__img">
 
             <div class="contact__content">
                 <div>
-                    <h3 class="contact__title">Write to us</h3>
-
+                    <h3 class="contact__title">Написать нам</h3>
                     <div class="contact__social">
-                        <a href="https://wa.me/77769945429" target="_blank">
-                            <i class="ri-whatsapp-fill"></i>
-                        </a>
-
-                        <a href="https://t.me/+JG8N0D8Q8N0xN2Ni" target="_blank">
-                            <i class="ri-messenger-fill"></i>
-                        </a>
-
                         <a href="mailto:Akjan601@gmail.com" target="_blank">
                             <i class="ri-mail-fill"></i>
                         </a>
@@ -292,20 +224,9 @@
                 </div>
 
                 <div>
-                    <h3 class="contact__title">Позвоните нам по номерам</h3>
-
+                    <h3 class="contact__title">Найти нас</h3>
                     <address class="contact__info">
-                        +7 747 288 17 49<br>
-                        +7 707 579 12 04
-                    </address>
-                </div>
-
-                <div>
-                    <h3 class="contact__title">Найдите нас здесь</h3>
-
-                    <address class="contact__info">
-                        Astana, Pushkina 11 <br>
-                        01000
+                        Astana, Kazakhstan
                     </address>
                 </div>
             </div>
@@ -318,61 +239,36 @@
     <div class="footer__container container grid">
         <div>
             <a href="#" class="footer__logo">
-                <i class="ri-cactus-line"></i> Cactu
+                <i class="ri-cactus-line"></i> CACTU
             </a>
-
-            <p class="footer__description">Развивайтесь вместе с <br> CACTU</p>
+            <p class="footer__description">Поливай кактус привычками <br> каждый день</p>
         </div>
 
         <div class="footer__content grid">
             <div>
-                <h3 class="footer__title">COMPANY</h3>
-
+                <h3 class="footer__title">НАВИГАЦИЯ</h3>
                 <ul class="footer__links">
-                    <li>
-                        <a href="#" class="footer__link">About Us</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="footer__link">Products</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="footer__link">Features</a>
-                    </li>
+                    <li><a href="/start" class="footer__link">Начать игру</a></li>
+                    <li><a href="/habits" class="footer__link">Мои привычки</a></li>
+                    <li><a href="/calendar" class="footer__link">Календарь</a></li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="footer__title">INFORMATION</h3>
-
+                <h3 class="footer__title">ИНФОРМАЦИЯ</h3>
                 <ul class="footer__links">
-                    <li>
-                        <a href="#" class="footer__link">Blogs & News</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="footer__link">Contacts Us</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="footer__link">FAQs</a>
-                    </li>
+                    <li><a href="/instructions" class="footer__link">Как играть</a></li>
+                    <li><a href="/feedback" class="footer__link">Обратная связь</a></li>
+                    <li><a href="/achievement" class="footer__link">Достижения</a></li>
                 </ul>
             </div>
 
             <div>
-                <h3 class="footer__title">SOCIAL MEDIA</h3>
-
+                <h3 class="footer__title">СОЦИАЛЬНЫЕ СЕТИ</h3>
                 <div class="footer__social">
-                    <a href="https://www.facebook.com/" target="_blank" class="footer__social-link">
-                        <i class="ri-facebook-circle-fill"></i>
-                    </a>
-
                     <a href="https://www.instagram.com/" target="_blank" class="footer__social-link">
                         <i class="ri-instagram-fill"></i>
                     </a>
-
                     <a href="https://twitter.com/" target="_blank" class="footer__social-link">
                         <i class="ri-twitter-x-line"></i>
                     </a>
@@ -380,21 +276,14 @@
             </div>
         </div>
     </div>
-
-    <span class="footer__copy">
-            &#169; Все права защищены CACTU.corp
-         </span>
+    <span class="footer__copy">&#169; Все права защищены CACTU.corp</span>
 </footer>
 
-<!--========== SCROLL UP ==========-->
 <a href="#" class="scrollup" id="scroll-up">
     <i class="ri-arrow-up-line"></i>
 </a>
 
-<!--=============== SCROLLREVEAL ===============-->
-<script src="../js/scrollreveal.min.js"></script>
-
-<!--=============== MAIN JS ===============-->
-<script src="../js/main.js"></script>
+<script src="/js/scrollreveal.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
